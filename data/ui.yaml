@@ -99,3 +99,5 @@ link_project:      {de: Projektseite, en: Project page}
 link_blog:         {de: Blog, en: Blog}
 link_talk:         {de: Vortrag, en: Talk}
 as_markdown:       {de: Diese Seite als Markdown, en: This page as Markdown}
+nav_legal:         {de: Impressum, en: Legal notice}
+legal_title:       {de: Impressum und Datenschutz, en: Legal notice and privacy}

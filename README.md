@@ -84,6 +84,31 @@ Then open <http://localhost:8000/en/>. Other themes can be previewed with
 `python build.py --no-pdf --theme sidebar` or `--theme dark`; to switch the live site,
 change the `--theme` default in `build.py`.
 
+## Safety and robustness
+
+- **Account**: keep two-factor authentication on for the GitHub account; it owns the site.
+- **Failures are visible**: a failed build or deploy opens (or comments on) an issue
+  labelled `build-failure`; the previous version of the site stays online. GitHub also
+  e-mails failed runs if enabled under Settings → Notifications → Actions.
+- **Data guard**: `scripts/fetch.py` retries every request, keeps the previous JSON when
+  a source fails or answers implausibly (empty list, ORCID/Zenodo shrinking by more than
+  half), merges blog posts instead of replacing them, and drops any non-http(s) URL.
+- **Pinned versions**: `requirements.txt` pins exact versions and the workflows pin
+  actions to commit hashes; Dependabot (`.github/dependabot.yml`) opens pull requests
+  for updates and security alerts are enabled.
+- **Protected main**: a repository ruleset blocks force-pushes and deletion of `main`.
+- **Link check**: `.github/workflows/link-check.yml` runs `scripts/check_links.py`
+  every Monday over the hand-written content and opens an issue labelled `link-check`
+  when a link is broken (403/429/999 count as "blocked", not broken).
+- **Line endings**: `.gitattributes` normalises everything to LF.
+
+## Legal
+
+`content/legal.md` (German) and `content/legal.en.md` (English) hold the disclosure
+under § 25 MedienG, the privacy note and the license summary; they render at
+`/de/legal/` and `/en/legal/`. Code is MIT (see `LICENSE`); texts and the portrait are
+all rights reserved; fonts are SIL OFL 1.1.
+
 ## Privacy
 
 The site sets no cookies and makes no third-party requests: fonts are self-hosted and

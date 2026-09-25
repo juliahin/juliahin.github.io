@@ -68,6 +68,7 @@ PAGES = [
     ("projects.html", "projects/", "nav_projects", "projects"),
     ("cv.html", "cv/", "nav_cv", "cv"),
     ("publications.html", "publications/", "nav_publications", "publications"),
+    ("legal.html", "legal/", "nav_legal", "legal"),
 ]
 
 FRONT_MATTER = re.compile(r"\A---\r?\n(.*?)\r?\n---\r?\n?", re.S)
@@ -118,6 +119,23 @@ def load_projects(langs: list[str]) -> list[dict]:
         projects.append(meta)
     projects.sort(key=lambda p: (p.get("order", 999), str(p.get("start", ""))))
     return projects
+
+
+def load_page(name: str, langs: list[str]) -> dict:
+    """Read content/<name>.md (German) and content/<name>.<lang>.md translations."""
+    path = CONTENT / f"{name}.md"
+    meta, body = split_front_matter(path.read_text(encoding="utf-8"))
+    bodies = {"de": body.strip()}
+    for lang in langs:
+        tr = CONTENT / f"{name}.{lang}.md"
+        if tr.exists():
+            _, tr_body = split_front_matter(tr.read_text(encoding="utf-8"))
+            bodies[lang] = tr_body.strip()
+    for lang in langs:
+        bodies.setdefault(lang, bodies["de"])
+    meta["body_md"] = bodies
+    meta["body_html"] = {lang: render_markdown(b) for lang, b in bodies.items()}
+    return meta
 
 
 def localized(value, lang: str):
@@ -326,6 +344,7 @@ def build(out: Path, base: str, theme: str, pdf_mode: str) -> None:
     ui = load_yaml(DATA / "ui.yaml")
     langs = profile.get("languages") or ["en", "de"]
     projects = load_projects(langs)
+    legal = load_page("legal", langs)
     orcid = load_json(DATA / "auto" / "orcid.json")
     zenodo = load_json(DATA / "auto" / "zenodo.json")
     bluesky = load_json(DATA / "auto" / "bluesky.json")
@@ -348,6 +367,7 @@ def build(out: Path, base: str, theme: str, pdf_mode: str) -> None:
         "cv": cv,
         "ui": ui,
         "projects": projects,
+        "legal": legal,
         "orcid": orcid,
         "zenodo": zenodo,
         "bluesky": bluesky,

@@ -253,3 +253,7 @@ html { overflow-x: clip; }
 .card-meta { font-family: var(--ui-font); font-size: .85rem; color: var(--fg-muted); margin: -.2rem 0 .4rem; }
 .card-links { display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-family: var(--ui-font); font-size: .88rem; margin: .5rem 0 0; }
 @media (max-width: 560px) { .project-meta { grid-template-columns: 1fr; } .project-meta dt { margin-top: .4rem; } }
+
+/* ---------- prose pages (legal) ---------- */
+.prose h2 { font-size: 1.25rem; margin-top: 2rem; }
+.prose p { margin-bottom: .8em; }

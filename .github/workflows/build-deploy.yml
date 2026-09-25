@@ -7,10 +7,8 @@ on:
     - cron: "17 5 * * *"      # daily at 05:17 UTC: refresh ORCID / Zenodo / Bluesky / blog data
   workflow_dispatch:
 
-permissions:
-  contents: write             # commit refreshed data/auto/*.json
-  pages: write
-  id-token: write
+# No default permissions; each job declares exactly what it needs.
+permissions: {}
 
 concurrency:
   group: pages
@@ -19,12 +17,17 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write         # commit refreshed data/auto/*.json
+      pages: write            # actions/configure-pages
+      id-token: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.12"
           cache: pip
@@ -57,18 +60,50 @@ jobs:
       - name: Build site and PDF
         run: python build.py --require-pdf
 
-      - uses: actions/configure-pages@v5
+      - uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
         with:
           path: _site
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+
+  # Opens (or comments on) an issue when build or deploy fails, so the failure
+  # shows up in the repository and in e-mail even for scheduled runs.
+  notify:
+    needs: [build, deploy]
+    if: failure()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      issues: write
+    steps:
+      - name: Open or update the failure issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          EVENT: ${{ github.event_name }}
+        run: |
+          BODY="The **Build and deploy** workflow failed on $(date -u '+%Y-%m-%d %H:%M UTC') (trigger: $EVENT).
+          Run: $RUN_URL
+          The previous version of the site stays online until a run succeeds."
+          gh label create build-failure --repo "$REPO" --color d73a4a --description "Automated: a workflow run failed" 2>/dev/null || true
+          NUM=$(gh issue list --repo "$REPO" --label build-failure --state open --json number --jq '.[0].number')
+          if [ -n "$NUM" ]; then
+            gh issue comment "$NUM" --repo "$REPO" --body "$BODY"
+          else
+            gh issue create --repo "$REPO" --title "Build and deploy failed" --label build-failure --body "$BODY"
+          fi

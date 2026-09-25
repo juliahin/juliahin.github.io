@@ -7,8 +7,14 @@ Sources (all public, no credentials needed):
   * Bluesky public API -> data/auto/bluesky.json  (latest own posts, no replies/reposts)
   * Hypotheses RSS     -> data/auto/blog.json     (blog posts (co-)authored by Julia)
 
-Each source is fetched independently. If a source fails, the previously stored
-JSON for that source is kept, so a flaky API never empties the website.
+Robustness rules
+  * Every request is retried (3 attempts, exponential backoff) and has a timeout.
+  * A source that fails keeps its previously stored JSON.
+  * A source that answers successfully but implausibly (empty list, or ORCID/Zenodo
+    shrinking by more than half) is rejected and the previous JSON is kept.
+  * Blog posts are merged with the stored ones, because the RSS feed only carries the
+    newest ten posts of the whole blog.
+  * Only http(s) URLs are kept; anything else is dropped.
 """
 from __future__ import annotations
 
@@ -21,6 +27,8 @@ from pathlib import Path
 import feedparser
 import requests
 import yaml
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -38,28 +46,70 @@ FULL_NAME = f"{SURNAME}, {GIVEN}".lower()
 
 UA = {"User-Agent": f"{PROFILE['site_url']} (personal website build)"}
 TIMEOUT = 30
+BLOG_KEEP = 25
+
+# The list that decides whether a fetched payload is plausible
+LIST_KEY = {"orcid.json": "works", "zenodo.json": "records", "bluesky.json": "posts", "blog.json": "posts"}
+
+SESSION = requests.Session()
+SESSION.headers.update(UA)
+_retry = Retry(total=3, backoff_factor=1.5, status_forcelist=[429, 500, 502, 503, 504], allowed_methods=["GET"])
+SESSION.mount("https://", HTTPAdapter(max_retries=_retry))
+SESSION.mount("http://", HTTPAdapter(max_retries=_retry))
 
 
+# --------------------------------------------------------------------------- helpers
 def now_iso() -> str:
     return datetime.now(timezone.utc).replace(microsecond=0).isoformat()
 
 
-def save(name: str, payload: dict) -> None:
+def safe_url(value) -> str | None:
+    """Return the URL if it is an absolute http(s) URL, else None."""
+    if not isinstance(value, str):
+        return None
+    value = value.strip()
+    return value if re.match(r"^https?://[^\s]+$", value, re.I) else None
+
+
+def load_previous(name: str) -> dict:
+    path = AUTO / name
+    if not path.exists():
+        return {}
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+
+
+def plausible(name: str, new: dict, old: dict) -> tuple[bool, str]:
+    key = LIST_KEY[name]
+    n_new, n_old = len(new.get(key) or []), len(old.get(key) or [])
+    if n_old and n_new == 0:
+        return False, f"{key} is empty (previously {n_old})"
+    if name in ("orcid.json", "zenodo.json") and n_old and n_new < n_old / 2:
+        return False, f"{key} shrank from {n_old} to {n_new}"
+    return True, ""
+
+
+def save(name: str, payload: dict) -> bool:
+    old = load_previous(name)
+    ok, why = plausible(name, payload, old)
+    if not ok:
+        print(f"  ! {name} rejected, keeping previous data: {why}", file=sys.stderr)
+        return False
     payload["fetched_at"] = now_iso()
-    (AUTO / name).write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
-    print(f"  wrote data/auto/{name}")
+    (AUTO / name).write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"  wrote data/auto/{name} ({len(payload.get(LIST_KEY[name]) or [])} {LIST_KEY[name]})")
+    return True
 
 
 def get_json(url: str, **kw) -> dict:
-    headers = {**UA, "Accept": "application/json", **kw.pop("headers", {})}
-    r = requests.get(url, headers=headers, timeout=TIMEOUT, **kw)
+    headers = {"Accept": "application/json", **kw.pop("headers", {})}
+    r = SESSION.get(url, headers=headers, timeout=TIMEOUT, **kw)
     r.raise_for_status()
     return r.json()
 
 
-# --------------------------------------------------------------------------- ORCID
 def _val(d, *path, default=None):
     for p in path:
         if not isinstance(d, dict):
@@ -68,6 +118,7 @@ def _val(d, *path, default=None):
     return d if d is not None else default
 
 
+# --------------------------------------------------------------------------- ORCID
 def fetch_orcid() -> dict:
     base = f"https://pub.orcid.org/v3.0/{ORCID}"
     works_raw = get_json(f"{base}/works")
@@ -101,7 +152,7 @@ def fetch_orcid() -> dict:
                 "month": _val(s, "publication-date", "month", "value"),
                 "journal": _val(s, "journal-title", "value") or _val(detail, "journal-title", "value"),
                 "dois": dois,
-                "url": _val(s, "url", "value") or _val(detail, "url", "value"),
+                "url": safe_url(_val(s, "url", "value") or _val(detail, "url", "value")),
                 "contributors": contributors,
                 "source": _val(s, "source", "source-name", "value"),
             }
@@ -155,8 +206,7 @@ def fetch_zenodo() -> dict:
                 m = h["metadata"]
                 creators = m.get("creators", [])
                 mine = any(
-                    c.get("orcid") == ORCID
-                    or " ".join(c.get("name", "").lower().split()) == FULL_NAME
+                    c.get("orcid") == ORCID or " ".join(c.get("name", "").lower().split()) == FULL_NAME
                     for c in creators
                 )
                 if not mine:
@@ -174,7 +224,7 @@ def fetch_zenodo() -> dict:
                     "doi": (h.get("doi") or m.get("doi") or "").lower(),
                     "concept_doi": (h.get("conceptdoi") or "").lower(),
                     "creators": [c.get("name") for c in creators],
-                    "url": h.get("links", {}).get("self_html") or f"https://zenodo.org/records/{rec_id}",
+                    "url": safe_url(h.get("links", {}).get("self_html")) or f"https://zenodo.org/records/{rec_id}",
                     "description": re.sub(r"<[^>]+>", "", m.get("description") or "")[:400],
                 }
             if len(hits) < 25:
@@ -186,7 +236,7 @@ def fetch_zenodo() -> dict:
 
 # --------------------------------------------------------------------------- Bluesky
 def _linkify_facets(text: str, facets: list[dict] | None) -> list[dict]:
-    """Turn a post text + facets into a list of segments: {text, href?}."""
+    """Turn a post text + facets into a list of segments: {text, href?}. Unsafe hrefs are dropped."""
     b = text.encode("utf-8")
     spans = []
     for f in facets or []:
@@ -195,16 +245,18 @@ def _linkify_facets(text: str, facets: list[dict] | None) -> list[dict]:
         for feat in f.get("features", []):
             t = feat.get("$type", "")
             if t.endswith("#link"):
-                href = feat.get("uri")
-            elif t.endswith("#mention"):
-                href = f"https://bsky.app/profile/{feat.get('did')}"
-            elif t.endswith("#tag"):
-                href = f"https://bsky.app/hashtag/{feat.get('tag')}"
+                href = safe_url(feat.get("uri"))
+            elif t.endswith("#mention") and re.match(r"^did:[a-z0-9:.%-]+$", str(feat.get("did", ""))):
+                href = f"https://bsky.app/profile/{feat['did']}"
+            elif t.endswith("#tag") and re.match(r"^[\w\-]+$", str(feat.get("tag", ""))):
+                href = f"https://bsky.app/hashtag/{feat['tag']}"
         if href:
             spans.append((idx.get("byteStart", 0), idx.get("byteEnd", 0), href))
     spans.sort()
     segments, pos = [], 0
     for start, end, href in spans:
+        if start < pos:
+            continue  # overlapping facet
         if start > pos:
             segments.append({"text": b[pos:start].decode("utf-8", "ignore")})
         segments.append({"text": b[start:end].decode("utf-8", "ignore"), "href": href})
@@ -230,19 +282,22 @@ def fetch_bluesky(limit: int = 6) -> dict:
             continue
         rec = p["record"]
         rkey = p["uri"].rsplit("/", 1)[-1]
+        if not re.match(r"^[a-z0-9]+$", rkey):
+            continue
         embed = p.get("embed") or {}
         external = None
         images: list[dict] = []
         et = embed.get("$type", "")
         if et.endswith("external#view"):
             ext = embed.get("external", {})
-            external = {"uri": ext.get("uri"), "title": ext.get("title"), "description": ext.get("description")}
+            if safe_url(ext.get("uri")):
+                external = {"uri": ext["uri"], "title": ext.get("title"), "description": ext.get("description")}
         elif et.endswith("images#view"):
-            images = [{"thumb": i.get("thumb"), "alt": i.get("alt", "")} for i in embed.get("images", [])]
+            images = [{"thumb": safe_url(i.get("thumb")), "alt": i.get("alt", "")} for i in embed.get("images", [])]
         elif et.endswith("recordWithMedia#view"):
             media = embed.get("media", {})
             if media.get("$type", "").endswith("images#view"):
-                images = [{"thumb": i.get("thumb"), "alt": i.get("alt", "")} for i in media.get("images", [])]
+                images = [{"thumb": safe_url(i.get("thumb")), "alt": i.get("alt", "")} for i in media.get("images", [])]
         posts.append(
             {
                 "uri": p["uri"],
@@ -271,7 +326,9 @@ def fetch_bluesky(limit: int = 6) -> dict:
 
 # --------------------------------------------------------------------------- Blog
 def fetch_blog() -> dict:
-    parsed = feedparser.parse(BLOG_FEED, agent=UA["User-Agent"])
+    r = SESSION.get(BLOG_FEED, timeout=TIMEOUT, headers={"Accept": "application/rss+xml, application/xml, text/xml"})
+    r.raise_for_status()
+    parsed = feedparser.parse(r.content)
     if parsed.get("bozo") and not parsed.entries:
         raise RuntimeError(f"feed error: {parsed.get('bozo_exception')}")
     posts = []
@@ -279,19 +336,27 @@ def fetch_blog() -> dict:
         author = e.get("author", "") or ""
         if BLOG_AUTHOR.lower() not in author.lower():
             continue
+        url = safe_url(e.get("link"))
+        if not url:
+            continue
         published = ""
         if e.get("published_parsed"):
             published = datetime(*e.published_parsed[:6]).date().isoformat()
         posts.append(
             {
                 "title": e.get("title"),
-                "url": e.get("link"),
+                "url": url,
                 "date": published,
                 "authors": author,
                 "summary": re.sub(r"<[^>]+>", "", e.get("summary", ""))[:300].strip(),
             }
         )
-    return {"feed": BLOG_FEED, "blog_title": parsed.feed.get("title"), "posts": posts}
+    # The feed only carries the newest posts of the whole blog: merge with what we already have.
+    previous = load_previous("blog.json").get("posts") or []
+    by_url = {p["url"]: p for p in previous}
+    by_url.update({p["url"]: p for p in posts})
+    merged = sorted(by_url.values(), key=lambda p: p.get("date") or "", reverse=True)[:BLOG_KEEP]
+    return {"feed": BLOG_FEED, "blog_title": parsed.feed.get("title"), "posts": merged}
 
 
 # --------------------------------------------------------------------------- main
@@ -306,7 +371,8 @@ def main() -> int:
     for name, fn in sources.items():
         print(f"fetching {name} ...")
         try:
-            save(name, fn())
+            if not save(name, fn()):
+                failures += 1
         except Exception as exc:  # noqa: BLE001
             failures += 1
             print(f"  ! {name} failed, keeping previous data: {exc}", file=sys.stderr)

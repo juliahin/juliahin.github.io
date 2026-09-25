@@ -11,6 +11,7 @@
 - [CV]({{ site_url }}{{ base }}en/cv.md): positions, education, publications, talks, teaching, organisation, skills, languages
 - [Publications]({{ site_url }}{{ base }}en/publications.md): curated publication list plus records imported from ORCID and Zenodo
 - [CV as PDF]({{ site_url }}{{ base }}en/{{ pdf_names['en'] }})
+- [Legal notice and privacy]({{ site_url }}{{ base }}en/legal.md)
 
 ## Seiten (Deutsch)
 
@@ -19,6 +20,7 @@
 - [Lebenslauf]({{ site_url }}{{ base }}de/cv.md): Werdegang, Ausbildung, Publikationen, Vorträge, Lehre, Kompetenzen, Sprachen
 - [Publikationen]({{ site_url }}{{ base }}de/publications.md): kuratierte Publikationsliste plus Einträge aus ORCID und Zenodo
 - [Lebenslauf als PDF]({{ site_url }}{{ base }}de/{{ pdf_names['de'] }})
+- [Impressum und Datenschutz]({{ site_url }}{{ base }}de/legal.md)
 
 ## Profiles
 
@@ -30,6 +32,6 @@
 
 ## Optional
 
-- [Source code of this site](https://github.com/{{ profile.github }}/{{ profile.github }}.github.io): build scripts, data files, daily refresh workflow
+- [Source code of this site](https://github.com/{{ profile.github }}/{{ profile.github }}.github.io): build scripts, data files, daily refresh workflow (MIT; texts and photo all rights reserved)
 
 Publications and posts are refreshed daily from ORCID, Zenodo, Bluesky and Hypotheses. Last build: {{ build_date }}.

@@ -16,3 +16,4 @@ Thumbs.db
 # original full-size photo (6 MB) - only the resized copies in static/img are committed
 IMG_*.JPG
 IMG_*.jpg
+link-report.md

@@ -1,0 +1,44 @@
+name: Link check
+
+on:
+  schedule:
+    - cron: "23 6 * * 1"      # Mondays 06:23 UTC
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+
+      - run: pip install requests==2.34.2
+
+      - name: Check links in content and data
+        id: links
+        run: python scripts/check_links.py
+
+      - name: Open or update the link issue
+        if: failure() && steps.links.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          printf '\nRun: %s\n' "$RUN_URL" >> link-report.md
+          gh label create link-check --repo "$REPO" --color e4e669 --description "Automated: broken links found" 2>/dev/null || true
+          NUM=$(gh issue list --repo "$REPO" --label link-check --state open --json number --jq '.[0].number')
+          if [ -n "$NUM" ]; then
+            gh issue comment "$NUM" --repo "$REPO" --body-file link-report.md
+          else
+            gh issue create --repo "$REPO" --title "Broken links found" --label link-check --body-file link-report.md
+          fi

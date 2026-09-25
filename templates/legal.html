@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as m with context %}
+{% block content %}
+
+<header class="page-header">
+  <h1>{{ ui.legal_title|t }}</h1>
+</header>
+
+<div class="section prose">
+  {{ legal.body_html[lang]|safe }}
+</div>
+
+{% endblock %}
