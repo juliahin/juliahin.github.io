@@ -2,12 +2,22 @@
 """Build the static website into _site/.
 
 Inputs
-  data/profile.yaml   identity, links, bio
-  data/cv.yaml        curated CV (education, positions, publications, talks, ...)
-  data/ui.yaml        interface strings (de/en)
-  data/auto/*.json    fetched by scripts/fetch.py (ORCID, Zenodo, Bluesky, blog)
-  templates/          Jinja2 templates
-  static/             css, fonts, images (copied verbatim)
+  data/profile.yaml       identity, links, bio
+  data/cv.yaml            curated CV (education, positions, publications, talks, ...)
+  data/ui.yaml            interface strings (de/en)
+  data/auto/*.json        fetched by scripts/fetch.py (ORCID, Zenodo, Bluesky, blog)
+  content/projects/*.md   one Markdown file per project: <id>.md holds the front matter
+                          (dates, role, links, ...) and the German text, <id>.en.md the
+                          English text. Missing translations fall back to German.
+  templates/              Jinja2 templates (HTML pages, plus templates/md/ for the
+                          Markdown twins and llms.txt)
+  static/                 css, fonts, images (copied verbatim)
+
+Outputs (per language)
+  <lang>/index.html, <lang>/projects/, <lang>/cv/, <lang>/publications/
+  <lang>/index.md, <lang>/projects.md, <lang>/cv.md, <lang>/publications.md
+  <lang>/julia-hintersteiner-cv-<lang>.pdf
+plus /index.html (language redirect), /llms.txt, /sitemap.xml, /robots.txt, /404.html
 
 Usage
   python build.py [--out _site] [--base /] [--theme codex] [--require-pdf] [--no-pdf]
@@ -22,11 +32,13 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+import markdown
 import yaml
 from jinja2 import Environment, FileSystemLoader, pass_context, select_autoescape
 
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"
+CONTENT = ROOT / "content"
 TEMPLATES = ROOT / "templates"
 STATIC = ROOT / "static"
 
@@ -50,6 +62,16 @@ TYPE_KEYS = {
     "other": "type_other",
 }
 
+# (html template, url path, nav key, markdown slug)
+PAGES = [
+    ("index.html", "", "nav_home", "index"),
+    ("projects.html", "projects/", "nav_projects", "projects"),
+    ("cv.html", "cv/", "nav_cv", "cv"),
+    ("publications.html", "publications/", "nav_publications", "publications"),
+]
+
+FRONT_MATTER = re.compile(r"\A---\r?\n(.*?)\r?\n---\r?\n?", re.S)
+
 
 # ----------------------------------------------------------------------------- helpers
 def load_yaml(path: Path):
@@ -58,6 +80,44 @@ def load_yaml(path: Path):
 
 def load_json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+
+
+def split_front_matter(text: str) -> tuple[dict, str]:
+    m = FRONT_MATTER.match(text)
+    if not m:
+        return {}, text
+    return (yaml.safe_load(m.group(1)) or {}), text[m.end():]
+
+
+def render_markdown(text: str) -> str:
+    return markdown.markdown(text, extensions=["sane_lists", "attr_list"], output_format="html5")
+
+
+def load_projects(langs: list[str]) -> list[dict]:
+    """Read content/projects/*.md into project dicts with body_md / body_html per language."""
+    projects = []
+    folder = CONTENT / "projects"
+    for path in sorted(folder.glob("*.md")):
+        if re.search(r"\.[a-z]{2}\.md$", path.name):
+            continue  # translation file, picked up below
+        meta, body = split_front_matter(path.read_text(encoding="utf-8"))
+        if "id" not in meta:
+            raise SystemExit(f"{path}: front matter needs an 'id'")
+        default_lang = "de"
+        bodies = {default_lang: body.strip()}
+        for lang in langs:
+            tr = folder / f"{meta['id']}.{lang}.md"
+            if tr.exists():
+                _, tr_body = split_front_matter(tr.read_text(encoding="utf-8"))
+                bodies[lang] = tr_body.strip()
+        for lang in langs:
+            bodies.setdefault(lang, bodies[default_lang])
+        meta["body_md"] = bodies
+        meta["body_html"] = {lang: render_markdown(b) for lang, b in bodies.items()}
+        meta["source"] = path.relative_to(ROOT).as_posix()
+        projects.append(meta)
+    projects.sort(key=lambda p: (p.get("order", 999), str(p.get("start", ""))))
+    return projects
 
 
 def localized(value, lang: str):
@@ -95,8 +155,7 @@ def norm_title(s: str | None) -> str:
 
 def norm_doi(s: str | None) -> str:
     s = (s or "").strip().lower()
-    s = re.sub(r"^https?://(dx\.)?doi\.org/", "", s)
-    return s
+    return re.sub(r"^https?://(dx\.)?doi\.org/", "", s)
 
 
 def titles_match(a: str, b: str) -> bool:
@@ -152,9 +211,7 @@ def merge_auto_publications(cv: dict, orcid: dict, zenodo: dict) -> list[dict]:
     # Zenodo first (richer: URL, creators, full date)
     for r in zenodo.get("records") or []:
         dois = [r.get("doi"), r.get("concept_doi")]
-        if is_known(dois, r.get("title")):
-            continue
-        if already_merged(dois, r.get("title")):
+        if is_known(dois, r.get("title")) or already_merged(dois, r.get("title")):
             continue
         subtype_key = f"{r.get('type')}/{r.get('subtype')}" if r.get("subtype") else r.get("type")
         type_key = TYPE_KEYS.get(subtype_key) or TYPE_KEYS.get(r.get("type") or "") or "type_other"
@@ -176,9 +233,7 @@ def merge_auto_publications(cv: dict, orcid: dict, zenodo: dict) -> list[dict]:
         )
     for w in orcid.get("works") or []:
         dois = w.get("dois") or []
-        if is_known(dois, w.get("title")):
-            continue
-        if already_merged(dois, w.get("title")):
+        if is_known(dois, w.get("title")) or already_merged(dois, w.get("title")):
             continue
         date = w.get("year") or ""
         if w.get("month"):
@@ -214,25 +269,14 @@ def recent_publications(cv: dict, auto: list[dict], limit: int = 4) -> list[dict
 
 
 # ----------------------------------------------------------------------------- build
-def build(out: Path, base: str, theme: str, pdf_mode: str) -> None:
-    profile = load_yaml(DATA / "profile.yaml")
-    cv = load_yaml(DATA / "cv.yaml")
-    ui = load_yaml(DATA / "ui.yaml")
-    projects = load_yaml(DATA / "projects.yaml")
-    orcid = load_json(DATA / "auto" / "orcid.json")
-    zenodo = load_json(DATA / "auto" / "zenodo.json")
-    bluesky = load_json(DATA / "auto" / "bluesky.json")
-    blog = load_json(DATA / "auto" / "blog.json")
-
-    auto_pubs = merge_auto_publications(cv, orcid, zenodo)
-    recent = recent_publications(cv, auto_pubs)
-    build_time = datetime.now(timezone.utc)
-
+def make_env(ui: dict, text: bool = False) -> Environment:
+    """HTML templates trim block-tag newlines; text (Markdown) templates control whitespace
+    explicitly with `-%}` so that list lines and blank lines come out exactly as written."""
     env = Environment(
         loader=FileSystemLoader(TEMPLATES),
-        autoescape=select_autoescape(["html", "xml"]),
-        trim_blocks=True,
-        lstrip_blocks=True,
+        autoescape=select_autoescape(["html", "xml"]),  # .md / .txt templates are not escaped
+        trim_blocks=not text,
+        lstrip_blocks=not text,
     )
 
     @pass_context
@@ -259,24 +303,46 @@ def build(out: Path, base: str, theme: str, pdf_mode: str) -> None:
             return f"{localized(ui['until'], lang)} {fmt_date(end, lang)}"
         return ""
 
+    def oneline(value) -> str:
+        return re.sub(r"\s+", " ", str(value or "")).strip()
+
     env.filters["t"] = t_filter
     env.filters["date"] = date_filter
     env.filters["period"] = period_filter
+    env.filters["oneline"] = oneline
+    return env
+
+
+def tidy_markdown(text: str) -> str:
+    """Collapse runs of blank lines left behind by template logic."""
+    text = re.sub(r"[ \t]+\n", "\n", text)
+    text = re.sub(r"\n{3,}", "\n\n", text)
+    return text.strip() + "\n"
+
+
+def build(out: Path, base: str, theme: str, pdf_mode: str) -> None:
+    profile = load_yaml(DATA / "profile.yaml")
+    cv = load_yaml(DATA / "cv.yaml")
+    ui = load_yaml(DATA / "ui.yaml")
+    langs = profile.get("languages") or ["en", "de"]
+    projects = load_projects(langs)
+    orcid = load_json(DATA / "auto" / "orcid.json")
+    zenodo = load_json(DATA / "auto" / "zenodo.json")
+    bluesky = load_json(DATA / "auto" / "bluesky.json")
+    blog = load_json(DATA / "auto" / "blog.json")
+
+    auto_pubs = merge_auto_publications(cv, orcid, zenodo)
+    recent = recent_publications(cv, auto_pubs)
+    build_time = datetime.now(timezone.utc)
+    env = make_env(ui)
+    md_env = make_env(ui, text=True)
 
     if out.exists():
         shutil.rmtree(out)
     out.mkdir(parents=True)
     shutil.copytree(STATIC, out / "static")
 
-    pages = [
-        ("index.html", "", "nav_home"),
-        ("projects.html", "projects/", "nav_projects"),
-        ("cv.html", "cv/", "nav_cv"),
-        ("publications.html", "publications/", "nav_publications"),
-    ]
-    langs = profile.get("languages") or ["en", "de"]
     pdf_names = {lang: f"julia-hintersteiner-cv-{lang}.pdf" for lang in langs}
-
     common = {
         "profile": profile,
         "cv": cv,
@@ -295,27 +361,34 @@ def build(out: Path, base: str, theme: str, pdf_mode: str) -> None:
         "langs": langs,
         "pdf_names": pdf_names,
         "site_url": profile["site_url"].rstrip("/"),
+        "pages": PAGES,
     }
 
     for lang in langs:
-        for template_name, path, nav_key in pages:
-            tpl = env.get_template(template_name)
-            html = tpl.render(**common, lang=lang, page_path=path, nav_key=nav_key)
+        for template_name, path, nav_key, slug in PAGES:
+            ctx = {**common, "lang": lang, "page_path": path, "nav_key": nav_key, "md_slug": slug}
+            html = env.get_template(template_name).render(**ctx)
             target = out / lang / path / "index.html"
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(html, encoding="utf-8")
+            md = md_env.get_template(f"md/{slug}.md").render(**ctx)
+            (out / lang / f"{slug}.md").write_text(tidy_markdown(md), encoding="utf-8")
 
         # printable CV (+ PDF)
-        print_html = env.get_template("cv_print.html").render(**common, lang=lang, page_path="cv/", nav_key="nav_cv")
+        print_html = env.get_template("cv_print.html").render(
+            **common, lang=lang, page_path="cv/", nav_key="nav_cv", md_slug="cv"
+        )
         (out / lang / "cv-print.html").write_text(print_html, encoding="utf-8")
         if pdf_mode != "no":
             write_pdf(print_html, out / lang / pdf_names[lang], base_url=str(out / lang) + "/", required=(pdf_mode == "require"))
 
-    # root redirect, 404, sitemap, robots
-    root_tpl = env.get_template("root.html")
-    (out / "index.html").write_text(root_tpl.render(**common, lang=profile.get("default_lang", "en")), encoding="utf-8")
+    # root redirect, 404, llms.txt, sitemap, robots
+    default_lang = profile.get("default_lang", "en")
+    (out / "index.html").write_text(env.get_template("root.html").render(**common, lang=default_lang), encoding="utf-8")
     (out / "404.html").write_text(env.get_template("404.html").render(**common, lang="en"), encoding="utf-8")
-    urls = [f"{common['site_url']}{base}{lang}/{path}" for lang in langs for _, path, _ in pages]
+    llms = md_env.get_template("md/llms.txt").render(**common, lang=default_lang)
+    (out / "llms.txt").write_text(tidy_markdown(llms), encoding="utf-8")
+    urls = [f"{common['site_url']}{base}{lang}/{path}" for lang in langs for _, path, _, _ in PAGES]
     sitemap = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     sitemap += [f"  <url><loc>{u}</loc><lastmod>{common['build_date']}</lastmod></url>" for u in urls]
     sitemap.append("</urlset>\n")
@@ -323,12 +396,15 @@ def build(out: Path, base: str, theme: str, pdf_mode: str) -> None:
     (out / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: {common['site_url']}{base}sitemap.xml\n", encoding="utf-8")
     (out / ".nojekyll").write_text("", encoding="utf-8")
 
-    print(f"built {len(langs) * len(pages)} pages + {len(auto_pubs)} auto-imported records -> {out}")
+    print(
+        f"built {len(langs) * len(PAGES)} pages (+ Markdown twins, llms.txt), "
+        f"{len(projects)} projects, {len(auto_pubs)} auto-imported records -> {out}"
+    )
 
 
 def write_pdf(html: str, target: Path, base_url: str, required: bool) -> None:
     try:
-        from weasyprint import HTML  # noqa: WPS433 (optional dependency)
+        from weasyprint import HTML  # optional dependency; needs system libraries
     except Exception as exc:  # noqa: BLE001 - missing system libs raise OSError
         msg = f"PDF skipped ({target.name}): WeasyPrint not available: {exc}"
         if required:
@@ -336,7 +412,7 @@ def write_pdf(html: str, target: Path, base_url: str, required: bool) -> None:
         print("  ! " + msg, file=sys.stderr)
         return
     HTML(string=html, base_url=base_url).write_pdf(str(target))
-    print(f"  wrote {target.relative_to(ROOT) if target.is_relative_to(ROOT) else target}")
+    print(f"  wrote {target.name}")
 
 
 def main() -> None:

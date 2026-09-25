@@ -15,6 +15,7 @@
   <link rel="alternate" hreflang="{{ l }}" href="{{ site_url }}{{ base }}{{ l }}/{{ page_path }}">
   {% endfor %}
   <link rel="alternate" hreflang="x-default" href="{{ site_url }}{{ base }}">
+  <link rel="alternate" type="text/markdown" href="{{ base }}{{ lang }}/{{ md_slug }}.md" title="Markdown">
   <meta property="og:type" content="profile">
   <meta property="og:title" content="{{ page_title }}">
   <meta property="og:description" content="{{ ui.meta_description|t }}">
@@ -92,7 +93,7 @@
     <footer class="site-footer">
       <p class="footer-line">© {{ build_date[:4] }} {{ profile.name }} · <a href="mailto:{{ profile.emails[0] }}">{{ profile.emails[0] }}</a></p>
       <p class="footer-line muted">{{ ui.data_sources|t }} {{ ui.last_updated|t }}: <time datetime="{{ build_time }}">{{ build_date|date }}</time>.</p>
-      <p class="footer-line muted">{{ ui.imprint_note|t }} · <a href="https://github.com/{{ profile.github }}/{{ profile.github }}.github.io">{{ ui.source_code|t }}</a></p>
+      <p class="footer-line muted">{{ ui.imprint_note|t }} · <a href="https://github.com/{{ profile.github }}/{{ profile.github }}.github.io">{{ ui.source_code|t }}</a> · <a href="{{ base }}{{ lang }}/{{ md_slug }}.md" type="text/markdown">{{ ui.as_markdown|t }}</a> · <a href="{{ base }}llms.txt">llms.txt</a></p>
     </footer>
   </div>
 

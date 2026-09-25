@@ -21,8 +21,7 @@
     {% if p.funding %}<div><dt>{{ ui.funding|t }}</dt><dd>{{ p.funding|t }}</dd></div>{% endif %}
     {% if p.partners %}<div><dt>{{ ui.partners|t }}</dt><dd>{{ p.partners|t }}</dd></div>{% endif %}
   </dl>
-  <p>{{ p.summary|t }}</p>
-  {% if p.contribution %}<p><strong>{{ ui.contribution|t }}:</strong> {{ p.contribution|t }}</p>{% endif %}
+  <div class="project-body">{{ p.body_html[lang]|safe }}</div>
   <ul class="link-chips">
     {% for l in p.links %}{{ m.link_chip(l) }}{% endfor %}
   </ul>

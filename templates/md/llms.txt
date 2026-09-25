@@ -1,0 +1,35 @@
+# {{ profile.name }}
+
+> {{ profile.tagline.en }}. {{ profile.location.en }}. {{ profile.current_roles[0].title.en }} at the {{ profile.current_roles[0].org.en }}; {{ profile.current_roles[1].title.en }} at the {{ profile.current_roles[1].org.en }}. Bilingual site (English under /en/, German under /de/); every page also exists as Markdown, listed below.
+
+{{ profile.intro.en|oneline }}
+
+## Pages (English)
+
+- [Home]({{ site_url }}{{ base }}en/index.md): profile, current positions, research interests, projects, latest posts and publications, contact
+- [Projects]({{ site_url }}{{ base }}en/projects.md): research projects with role, period, funding, partners and links to databases, editions and code
+- [CV]({{ site_url }}{{ base }}en/cv.md): positions, education, publications, talks, teaching, organisation, skills, languages
+- [Publications]({{ site_url }}{{ base }}en/publications.md): curated publication list plus records imported from ORCID and Zenodo
+- [CV as PDF]({{ site_url }}{{ base }}en/{{ pdf_names['en'] }})
+
+## Seiten (Deutsch)
+
+- [Start]({{ site_url }}{{ base }}de/index.md): Profil, aktuelle Positionen, Forschungsschwerpunkte, Projekte, Aktuelles, Kontakt
+- [Projekte]({{ site_url }}{{ base }}de/projects.md): Forschungsprojekte mit Rolle, Zeitraum, Förderung, Partnern und Links
+- [Lebenslauf]({{ site_url }}{{ base }}de/cv.md): Werdegang, Ausbildung, Publikationen, Vorträge, Lehre, Kompetenzen, Sprachen
+- [Publikationen]({{ site_url }}{{ base }}de/publications.md): kuratierte Publikationsliste plus Einträge aus ORCID und Zenodo
+- [Lebenslauf als PDF]({{ site_url }}{{ base }}de/{{ pdf_names['de'] }})
+
+## Profiles
+
+- [ORCID](https://orcid.org/{{ profile.orcid }})
+- [Bluesky](https://bsky.app/profile/{{ profile.bluesky.handle }})
+- [LinkedIn]({{ profile.linkedin }})
+- [GitHub](https://github.com/{{ profile.github }})
+- [Blog: {{ profile.blog.title }}]({{ profile.blog.url }})
+
+## Optional
+
+- [Source code of this site](https://github.com/{{ profile.github }}/{{ profile.github }}.github.io): build scripts, data files, daily refresh workflow
+
+Publications and posts are refreshed daily from ORCID, Zenodo, Bluesky and Hypotheses. Last build: {{ build_date }}.
