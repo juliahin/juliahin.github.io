@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <circle cx="32" cy="32" r="32" fill="#556B2F"/>
+  <text x="32" y="43" text-anchor="middle" font-family="Georgia, 'Source Serif 4', serif" font-size="30" font-weight="600" fill="#F4F1E8">JH</text>
+  <circle cx="52" cy="14" r="6" fill="#7A1F2E"/>
+</svg>

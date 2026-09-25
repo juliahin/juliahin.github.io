@@ -1,0 +1,214 @@
+{
+  "records": [
+    {
+      "id": "21277766",
+      "title": "LLMs in the Service of Medieval Text Integration: WB meets MHDBDB",
+      "date": "2026-07-09",
+      "type": "presentation",
+      "subtype": null,
+      "doi": "10.5281/zenodo.21277766",
+      "concept_doi": "10.5281/zenodo.21277765",
+      "creators": [
+        "Hintersteiner, Julia"
+      ],
+      "url": "https://zenodo.org/records/21277766",
+      "description": ""
+    },
+    {
+      "id": "19335166",
+      "title": "From Users to Co-Creators. Learning from and with the Middle High German Conceptual Database",
+      "date": "2026-03-30",
+      "type": "presentation",
+      "subtype": null,
+      "doi": "10.5281/zenodo.19335166",
+      "concept_doi": "10.5281/zenodo.16737491",
+      "creators": [
+        "Hintersteiner, Julia"
+      ],
+      "url": "https://zenodo.org/records/19335166",
+      "description": ""
+    },
+    {
+      "id": "19332294",
+      "title": "Bias Detection in der historischen Textanalyse: Prompting, Perspektiven und semantische Präzision in der AI-Readiness der MHDBDB",
+      "date": "2026-03-30",
+      "type": "presentation",
+      "subtype": null,
+      "doi": "10.5281/zenodo.19332294",
+      "concept_doi": "10.5281/zenodo.17227864",
+      "creators": [
+        "Hintersteiner, Julia",
+        "van Beek, Alan Lena",
+        "Zeppezauer-Wachauer, Katharina"
+      ],
+      "url": "https://zenodo.org/records/19332294",
+      "description": "In diesem 90-min&uuml;tigen Workshop untersuchten die Teilnehmenden anhand konkreter Beispiele aus der MittelhochdeutschenBegriffsdatenbank (MHDBDB), wie sich Verzerrungen in historischen Textkorpora identifizieren und kritisch analysieren lassen. Die MHDBDB ist eine semantisch annotierte Forschungsinfrastruktur, die aktuell f&uuml;r den Einsatz in AI-gest&uuml;tzten Analyseverfahren vorbereitet w"
+    },
+    {
+      "id": "19065710",
+      "title": "From Miniature to Metadata: AI-Assisted Iconography for Medieval Manuscripts",
+      "date": "2026-03-17",
+      "type": "presentation",
+      "subtype": null,
+      "doi": "10.5281/zenodo.19065710",
+      "concept_doi": "10.5281/zenodo.19065709",
+      "creators": [
+        "Thomas, Drew",
+        "Hintersteiner, Julia"
+      ],
+      "url": "https://zenodo.org/records/19065710",
+      "description": ""
+    },
+    {
+      "id": "18696516",
+      "title": "Lessons Learned eines der ältesten DH-Projekte der Welt: Paradigmenwechsel von RDF-Strukturen zu AI-gestützter Erschließung in der MHDBDB",
+      "date": "2026-02-20",
+      "type": "publication",
+      "subtype": "conferencepaper",
+      "doi": "10.5281/zenodo.18696516",
+      "concept_doi": "10.5281/zenodo.18696515",
+      "creators": [
+        "Zeppezauer-Wachauer, Katharina",
+        "Hintersteiner, Julia",
+        "van Beek, Alan",
+        "Steiner, Christian"
+      ],
+      "url": "https://zenodo.org/records/18696516",
+      "description": "In diesem Vortrag werden zentrale Lessons Learned aus der über 50-jährigen Entwicklung der Mittelhochdeutschen Begriffsdatenbank (MHDBDB) präsentiert – einem der ältesten Projekte der Digital Humanities. Anhand der Migration von Lochkarten über relationale Oracle-Datenbanken bis zum Graph-DB-Experiment mit über 6 Mrd. RDF-Triples zeigt sich, dass technische Euphorie allein nicht ausreicht: Finanzi"
+    },
+    {
+      "id": "18696403",
+      "title": "From Miniature to Metadata: Transferring AI-Assisted Iconography to Medieval Manuscripts",
+      "date": "2026-02-20",
+      "type": "publication",
+      "subtype": "conferencepaper",
+      "doi": "10.5281/zenodo.18696403",
+      "concept_doi": "10.5281/zenodo.18696402",
+      "creators": [
+        "Hintersteiner, Julia",
+        "Thomas, Drew B."
+      ],
+      "url": "https://zenodo.org/records/18696403",
+      "description": "This paper explores an AI-assisted approach to iconographic analysis of medieval manuscript illuminations. Adapting a workflow originally developed for early modern woodcuts - combining Large Language Models (LLMs) with Retrieval-Augmented Generation (RAG) - we apply it to automatically generate Iconclass metadata for the 14th-century Wenzelsbibel. Our study makes two main contributions: assessing"
+    },
+    {
+      "id": "19454449",
+      "title": "Iconclass Annotations and LLM-Generated Descriptions for Selected Wenzelsbibel Miniatures",
+      "date": "2026-02-05",
+      "type": "dataset",
+      "subtype": null,
+      "doi": "10.5281/zenodo.19454449",
+      "concept_doi": "10.5281/zenodo.18489317",
+      "creators": [
+        "Thomas, Drew B.",
+        "Hintersteiner, Julia"
+      ],
+      "url": "https://zenodo.org/records/19454449",
+      "description": "This dataset accompanies the article Transferring AI-Based Iconclass Classification Across Image Traditions: A RAG Pipeline for the Wenzelsbibel (https://doi.org/10.3390/histories6010017) by Drew B. Thomas and Julia Hintersteiner, published in Histories 6:1. It contains scene-level data for selected miniatures from the Wenzelsbibel, including IIIF links to images, large language model&ndash;genera"
+    },
+    {
+      "id": "18412225",
+      "title": "From Punch Cards to Prompt Engineering: The MHDBDB and the Future of Semantic Annotation with LLMs",
+      "date": "2026-01-29",
+      "type": "presentation",
+      "subtype": null,
+      "doi": "10.5281/zenodo.18412225",
+      "concept_doi": "10.5281/zenodo.18412224",
+      "creators": [
+        "Hintersteiner, Julia"
+      ],
+      "url": "https://zenodo.org/records/18412225",
+      "description": ""
+    },
+    {
+      "id": "17178192",
+      "title": "Bias Detection in der historischen Textanalyse: Prompting, Perspektiven und semantische Präzision in der AI-Readiness der MHDBDB.",
+      "date": "2025-09-22",
+      "type": "publication",
+      "subtype": "conferencepaper",
+      "doi": "10.5281/zenodo.17178192",
+      "concept_doi": "10.5281/zenodo.17178191",
+      "creators": [
+        "Hintersteiner, Julia",
+        "van Beek, Alan Lena",
+        "Zeppezauer-Wachauer, Katharina"
+      ],
+      "url": "https://zenodo.org/records/17178192",
+      "description": "In diesem 90-minütigen Workshop untersuchen die Teilnehmenden anhand konkreter Beispiele aus der Mittelhochdeutschen Begriffsdatenbank (MHDBDB), wie sich Verzerrungen in historischen Textkorpora identifizieren und kritisch analysieren lassen. Die MHDBDB ist eine semantisch annotierte Forschungsinfrastruktur, die aktuell für den Einsatz in AI-gestützten Analyseverfahren vorbereitet wird. Ziel ist e"
+    },
+    {
+      "id": "14944537",
+      "title": "Wenzelsbibel Digital: Völlig losgelöst Die Edition als transmediales Skript",
+      "date": "2025-02-26",
+      "type": "poster",
+      "subtype": null,
+      "doi": "10.5281/zenodo.14944537",
+      "concept_doi": "10.5281/zenodo.14944536",
+      "creators": [
+        "Bürgermeister, Martina",
+        "Hintersteiner, Julia",
+        "Spadinger, Viktoria",
+        "Beutel-Thurow, Linda",
+        "Steindl, Christoph",
+        "Kapeller, Edith",
+        "Kern, Manfred"
+      ],
+      "url": "https://zenodo.org/records/14944537",
+      "description": "Der Beitrag diskutiert am Beispiel des Editionsprojektes \"Wenzelsbibel digital\" (https://edition.onb.ac.at/wenzelsbibel) die Grenzen der Abstraktionsmöglichkeiten editorischer Daten und evaluiert, inwieweit sich die Trennung von Inhalt und Form, beziehungsweise von Daten und Publikationsschicht, aufrechterhalten lässt. Wir fragen uns, inwieweit die von uns bereits erarbeiteten Datenmodelle und -st"
+    },
+    {
+      "id": "14943160",
+      "title": "Wenzelsbibel Digital: Völlig losgelöst Die Edition als transmediales Skript",
+      "date": "2025-02-26",
+      "type": "publication",
+      "subtype": "conferencepaper",
+      "doi": "10.5281/zenodo.14943160",
+      "concept_doi": "10.5281/zenodo.14943159",
+      "creators": [
+        "Bürgermeister, Martina",
+        "Hintersteiner, Julia",
+        "Spadinger, Viktoria",
+        "Beutel-Thurow, Linda",
+        "Steindl, Christoph",
+        "Kapeller, Edith",
+        "Kern, Manfred"
+      ],
+      "url": "https://zenodo.org/records/14943160",
+      "description": "Der Beitrag diskutiert am Beispiel des Editionsprojektes \"Wenzelsbibel digital\" (https://edition.onb.ac.at/wenzelsbibel) die Grenzen der Abstraktionsmöglichkeiten editorischer Daten und evaluiert, inwieweit sich die Trennung von Inhalt und Form, beziehungsweise von Daten und Publikationsschicht, aufrechterhalten lässt. Wir fragen uns, inwieweit die von uns bereits erarbeiteten Datenmodelle und -st"
+    },
+    {
+      "id": "20608795",
+      "title": "Wie annotiert man eigentlich den Pegasus?",
+      "date": "2025-01-01",
+      "type": "publication",
+      "subtype": "article",
+      "doi": "10.58079/13pru",
+      "concept_doi": "",
+      "creators": [
+        "Zeppezauer-Wachauer, Katharina",
+        "van Beek, Alan",
+        "Hintersteiner, Julia"
+      ],
+      "url": "https://zenodo.org/records/20608795",
+      "description": "Bibliographischer Eintrag aus der MHDBDB-Sekundärliteratur (Zotero-Sammlung). Exportiert am 2025."
+    },
+    {
+      "id": "20608807",
+      "title": "Von der Datenpflege zur Schnittstellenentwicklung: Eine Evaluation des Datenkolosses MHDBDB",
+      "date": "2024-01-01",
+      "type": "publication",
+      "subtype": "article",
+      "doi": "10.58079/12p9n",
+      "concept_doi": "",
+      "creators": [
+        "Hintersteiner, Julia",
+        "Göggelmann, Michael",
+        "Beek, Alan",
+        "Zeppezauer-Wachauer, Katharina"
+      ],
+      "url": "https://zenodo.org/records/20608807",
+      "description": "Bibliographischer Eintrag aus der MHDBDB-Sekundärliteratur (Zotero-Sammlung). Exportiert am 2024."
+    }
+  ],
+  "fetched_at": "2026-09-25T09:20:58+00:00"
+}

@@ -1,0 +1,102 @@
+# Profile: identity, links and texts that are not part of the CV proper.
+# Fields with de/en sub-keys are shown in the respective language version.
+
+name: Julia Hintersteiner
+degrees: MA BA
+site_url: https://juliahin.github.io
+default_lang: en          # language of the root redirect fallback
+languages: [en, de]
+
+orcid: 0009-0008-8333-3658
+github: juliahin
+linkedin: https://www.linkedin.com/in/julia-hintersteiner-aa54b32a9/
+bluesky:
+  handle: juliekovsky.bsky.social
+blog:
+  url: https://dhsalzburg.hypotheses.org/
+  feed: https://dhsalzburg.hypotheses.org/feed
+  author_match: Hintersteiner       # entries whose author field contains this are shown
+  title: Digital Humanities an der Universität Salzburg (Hypotheses)
+
+emails:
+  - julia.hintersteiner@plus.ac.at
+  - julia.hintersteiner@onb.ac.at
+
+photo:
+  square: img/portrait-640.jpg
+  square_small: img/portrait-320.jpg
+  square_webp: img/portrait-640.webp
+  portrait: img/portrait-3x4.jpg
+  alt:
+    de: Porträtfoto von Julia Hintersteiner
+    en: Portrait photo of Julia Hintersteiner
+
+tagline:
+  de: Digital Humanities · Mediävistik · Digitale Editionen
+  en: Digital Humanities · Medieval Studies · Digital Editions
+
+location:
+  de: Salzburg / Wien, Österreich
+  en: Salzburg / Vienna, Austria
+
+intro:
+  de: >-
+    Ich bin Digital-Humanities-Forscherin und Softwareentwicklerin. Ich arbeite an der
+    Mittelhochdeutschen Begriffsdatenbank (MHDBDB) der Universität Salzburg und an der
+    digitalen Edition der Notizbücher Peter Handkes an der Österreichischen Nationalbibliothek.
+    Meine Forschung verbindet Mediävistik, Kunstgeschichte und KI-gestützte Verfahren:
+    semantische Annotation historischer Sprachdaten, Text-Bild-Relationen in mittelalterlichen
+    Handschriften und TEI-basierte Forschungsdateninfrastrukturen.
+  en: >-
+    I am a Digital Humanities researcher and software developer. I work on the Middle High
+    German Conceptual Database (MHDBDB) at the University of Salzburg and on the digital
+    edition of Peter Handke's notebooks at the Austrian National Library. My research
+    connects medieval studies, art history and AI-assisted methods: semantic annotation of
+    historical language data, text–image relations in medieval manuscripts and TEI-based
+    research data infrastructures.
+
+current_roles:
+  - title:
+      de: Senior Scientist
+      en: Senior Scientist
+    org:
+      de: Mittelhochdeutsche Begriffsdatenbank (MHDBDB), Universität Salzburg
+      en: Middle High German Conceptual Database (MHDBDB), University of Salzburg
+    url: https://mhdbdb.plus.ac.at/
+  - title:
+      de: Softwareentwicklerin Digital Humanities
+      en: Software Developer, Digital Humanities
+    org:
+      de: Forschung & Datenservices, Österreichische Nationalbibliothek
+      en: Research & Data Services, Austrian National Library
+    url: https://www.onb.ac.at/
+
+research_interests:
+  - de: Wortsinndisambiguierung und semantische Annotation historischer Sprachdaten
+    en: Word sense disambiguation and semantic annotation of historical language data
+  - de: Digitale Edition mittelalterlicher Handschriften, Text-Bild-Relationen
+    en: Digital editions of medieval manuscripts, text–image relations
+  - de: KI-gestützte Verschlagwortung ikonografischer Motive
+    en: AI-assisted indexing of iconographic motifs
+  - de: TEI-XML-Datenmodellierung, Datenmigration und Forschungsdateninfrastruktur
+    en: TEI-XML data modelling, data migration and research data infrastructure
+  - de: KI-gestützte Verfahren in den Digital Humanities und ihre kritische Reflexion
+    en: AI-assisted methods in the Digital Humanities and their critical reflection
+
+projects:
+  - name: Mittelhochdeutsche Begriffsdatenbank (MHDBDB)
+    url: https://mhdbdb.plus.ac.at/
+    de: Eines der ältesten DH-Projekte weltweit; Migration von RDF zu TEI, Relaunch und KI-gestützte Annotation.
+    en: One of the oldest DH projects worldwide; migration from RDF to TEI, platform relaunch and AI-assisted annotation.
+  - name: Wenzelsbibel Digital
+    url: https://edition.onb.ac.at/context:wenbibel
+    de: Digitale Edition und Analyse der Wenzelsbibel (Universität Salzburg & Österreichische Nationalbibliothek).
+    en: Digital edition and analysis of the Wenceslas Bible (University of Salzburg & Austrian National Library).
+  - name: WB-DEA meets MHDBDB
+    url: https://zenodo.org/records/21277766
+    de: CLARIAH-AT-Projekt zur Integration der Wenzelsbibel-Editionsdaten in die MHDBDB mit LLM-gestützter Aufbereitung.
+    en: CLARIAH-AT project integrating the Wenceslas Bible edition data into the MHDBDB with LLM-assisted processing.
+  - name: Peter Handke – Notizbücher. Digitale Edition
+    url: https://edition.onb.ac.at/
+    de: Softwareentwicklung für die digitale Edition der Notizbücher an der Österreichischen Nationalbibliothek.
+    en: Software development for the digital edition of the notebooks at the Austrian National Library.

@@ -1,0 +1,100 @@
+{% import 'macros.html' as m with context %}
+{% set other_lang = 'de' if lang == 'en' else 'en' %}
+{% set page_title = (ui[nav_key]|t) ~ ' · ' ~ profile.name if page_path else profile.name ~ ' – ' ~ (profile.tagline|t) %}
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page_title }}</title>
+  <meta name="description" content="{{ ui.meta_description|t }}">
+  <meta name="author" content="{{ profile.name }}">
+  <meta name="color-scheme" content="{% if theme == 'dark' %}dark{% else %}light{% endif %}">
+  <link rel="canonical" href="{{ site_url }}{{ base }}{{ lang }}/{{ page_path }}">
+  {% for l in langs %}
+  <link rel="alternate" hreflang="{{ l }}" href="{{ site_url }}{{ base }}{{ l }}/{{ page_path }}">
+  {% endfor %}
+  <link rel="alternate" hreflang="x-default" href="{{ site_url }}{{ base }}">
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="{{ page_title }}">
+  <meta property="og:description" content="{{ ui.meta_description|t }}">
+  <meta property="og:url" content="{{ site_url }}{{ base }}{{ lang }}/{{ page_path }}">
+  <meta property="og:image" content="{{ site_url }}{{ base }}static/{{ profile.photo.square }}">
+  <meta property="og:locale" content="{{ 'de_AT' if lang == 'de' else 'en_GB' }}">
+  <link rel="icon" href="{{ base }}static/img/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="{{ base }}static/css/fonts.css">
+  <link rel="stylesheet" href="{{ base }}static/css/base.css">
+  <link rel="stylesheet" href="{{ base }}static/css/theme-{{ theme }}.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ profile.name }}",
+    "url": "{{ site_url }}{{ base }}",
+    "image": "{{ site_url }}{{ base }}static/{{ profile.photo.square }}",
+    "jobTitle": "{{ profile.current_roles[0].title|t }}",
+    "email": "mailto:{{ profile.emails[0] }}",
+    "sameAs": [
+      "https://orcid.org/{{ profile.orcid }}",
+      "https://bsky.app/profile/{{ profile.bluesky.handle }}",
+      "{{ profile.linkedin }}",
+      "https://github.com/{{ profile.github }}"
+    ]
+  }
+  </script>
+</head>
+<body class="theme-{{ theme }} page-{{ nav_key|replace('nav_', '') }} lang-{{ lang }}">
+<a class="skip-link" href="#main">{{ ui.skip_to_content|t }}</a>
+
+<div class="layout">
+
+  <nav class="site-nav" aria-label="{{ 'Hauptnavigation' if lang == 'de' else 'Main navigation' }}">
+    <a class="brand" href="{{ base }}{{ lang }}/">{{ profile.name }}</a>
+    <ul class="nav-links">
+      <li><a href="{{ base }}{{ lang }}/" {% if nav_key == 'nav_home' %}aria-current="page"{% endif %}>{{ ui.nav_home|t }}</a></li>
+      <li><a href="{{ base }}{{ lang }}/cv/" {% if nav_key == 'nav_cv' %}aria-current="page"{% endif %}>{{ ui.nav_cv|t }}</a></li>
+      <li><a href="{{ base }}{{ lang }}/publications/" {% if nav_key == 'nav_publications' %}aria-current="page"{% endif %}>{{ ui.nav_publications|t }}</a></li>
+      <li><a href="{{ base }}{{ lang }}/#contact">{{ ui.nav_contact|t }}</a></li>
+    </ul>
+    <ul class="nav-tools">
+      <li><a class="pdf-link" href="{{ base }}{{ lang }}/{{ pdf_names[lang] }}" title="{{ ui.download_cv|t }}">{{ m.icon('pdf') }}<span>{{ ui.download_cv_short|t }}</span></a></li>
+      <li><a class="lang-switch" href="{{ base }}{{ other_lang }}/{{ page_path }}" hreflang="{{ other_lang }}" lang="{{ other_lang }}" title="{{ ui.switch_lang_label|t }}">{{ ui.switch_lang|t }}</a></li>
+    </ul>
+  </nav>
+
+  <aside class="identity" id="top">
+    <a class="portrait-link" href="{{ base }}{{ lang }}/">
+      <picture>
+        <source srcset="{{ base }}static/{{ profile.photo.square_webp }}" type="image/webp">
+        <img class="portrait" src="{{ base }}static/{{ profile.photo.square }}" width="640" height="640" alt="{{ profile.photo.alt|t }}" loading="eager">
+      </picture>
+    </a>
+    <div class="identity-text">
+      <p class="name"><a href="{{ base }}{{ lang }}/">{{ profile.name }}</a><span class="degrees">, {{ profile.degrees }}</span></p>
+      <p class="tagline">{{ profile.tagline|t }}</p>
+      <p class="location">{{ profile.location|t }}</p>
+      <ul class="identity-links" aria-label="{{ ui.links|t }}">
+        <li><a href="https://orcid.org/{{ profile.orcid }}" rel="me">{{ m.icon('orcid') }}<span>ORCID</span></a></li>
+        <li><a href="https://bsky.app/profile/{{ profile.bluesky.handle }}" rel="me">{{ m.icon('bluesky') }}<span>Bluesky</span></a></li>
+        <li><a href="{{ profile.linkedin }}" rel="me">{{ m.icon('linkedin') }}<span>LinkedIn</span></a></li>
+        <li><a href="https://github.com/{{ profile.github }}" rel="me">{{ m.icon('github') }}<span>GitHub</span></a></li>
+        <li><a href="mailto:{{ profile.emails[0] }}">{{ m.icon('mail') }}<span>{{ ui.email|t }}</span></a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <div class="content">
+    <main id="main">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+      <p class="footer-line">© {{ build_date[:4] }} {{ profile.name }} · <a href="mailto:{{ profile.emails[0] }}">{{ profile.emails[0] }}</a></p>
+      <p class="footer-line muted">{{ ui.data_sources|t }} {{ ui.last_updated|t }}: <time datetime="{{ build_time }}">{{ build_date|date }}</time>.</p>
+      <p class="footer-line muted">{{ ui.imprint_note|t }} · <a href="https://github.com/{{ profile.github }}/{{ profile.github }}.github.io">{{ ui.source_code|t }}</a></p>
+    </footer>
+  </div>
+
+</div>
+</body>
+</html>

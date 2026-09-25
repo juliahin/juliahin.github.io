@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as m with context %}
+{% block content %}
+
+<header class="page-header">
+  <h1>{{ ui.publications|t }}</h1>
+  <p class="muted">{{ ui.data_sources|t }} <a href="https://orcid.org/{{ profile.orcid }}">ORCID {{ m.icon('external') }}</a></p>
+</header>
+
+<nav class="toc" aria-label="{{ 'Abschnitte' if lang == 'de' else 'Sections' }}">
+  <a href="#journal">{{ ui.pub_journal|t }}</a>
+  <a href="#proceedings">{{ ui.pub_proceedings|t }}</a>
+  <a href="#editions">{{ ui.pub_editions|t }}</a>
+  <a href="#blog">{{ ui.pub_blog|t }}</a>
+  <a href="#talks">{{ ui.talks|t }}</a>
+  <a href="#teaching">{{ ui.teaching|t }}</a>
+  {% if auto_pubs %}<a href="#auto">{{ ui.pub_auto|t }}</a>{% endif %}
+</nav>
+
+{% for cat, key in [('journal', 'pub_journal'), ('proceedings', 'pub_proceedings'), ('editions', 'pub_editions'), ('blog', 'pub_blog')] %}
+  {% if cv.publications[cat] %}
+  <section class="section" id="{{ cat }}">
+    <h2>{{ ui[key]|t }}</h2>
+    <ul class="entries">
+      {% for p in cv.publications[cat] %}{{ m.pub(p) }}{% endfor %}
+    </ul>
+  </section>
+  {% endif %}
+{% endfor %}
+
+<section class="section" id="talks">
+  <h2>{{ ui.talks|t }}</h2>
+  <ul class="entries">
+    {% for x in cv.talks %}{{ m.talk(x) }}{% endfor %}
+  </ul>
+</section>
+
+<section class="section" id="teaching">
+  <h2>{{ ui.teaching|t }}</h2>
+  <ul class="entries">
+    {% for x in cv.teaching %}{{ m.talk(x) }}{% endfor %}
+  </ul>
+</section>
+
+{% if auto_pubs %}
+<section class="section" id="auto">
+  <h2>{{ ui.pub_auto|t }}</h2>
+  <p class="muted small">{{ ui.pub_auto_note|t }}</p>
+  <ul class="entries">
+    {% for a in auto_pubs %}{{ m.auto_item(a) }}{% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% endblock %}

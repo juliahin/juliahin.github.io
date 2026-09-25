@@ -1,0 +1,14 @@
+{
+  "feed": "https://dhsalzburg.hypotheses.org/feed",
+  "blog_title": "Digital Humanities an der Universität Salzburg",
+  "posts": [
+    {
+      "title": "MHDBDB Next: Forschen ohne Datenbankserver",
+      "url": "https://dhsalzburg.hypotheses.org/7329",
+      "date": "2026-07-09",
+      "authors": "Katharina Zeppezauer-Wachauer, Alan van Beek und Julia Hintersteiner",
+      "summary": "Die Mittelhochdeutsche Begriffsdatenbank (MHDBDB) gehört zu den ältesten digitalen Forschungsinfrastrukturen der germanistischen Mediävistik. 1972 als Dissertationsprojekt auf Lochkarten gestartet, 1995 als eine der ersten geisteswissenschaftlichen Datenbanken im Web verfügbar und 2022 mit einem 50-"
+    }
+  ],
+  "fetched_at": "2026-09-25T09:21:00+00:00"
+}

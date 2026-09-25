@@ -1,0 +1,191 @@
+{% import 'macros.html' as m with context %}
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+<meta charset="utf-8">
+<title>{{ profile.name }} – {{ ui.cv_title|t }}</title>
+<link rel="stylesheet" href="../static/css/fonts.css">
+<style>
+  @page {
+    size: A4;
+    margin: 18mm 18mm 20mm 18mm;
+    @bottom-center { content: "{{ profile.name }} · {{ ui.cv_title|t }} · " counter(page) " / " counter(pages); font: 8pt "Source Sans 3", sans-serif; color: #777; }
+  }
+  :root { --olive: #556B2F; --olive-dark: #3F5220; --burgundy: #7A1F2E; --ink: #22261C; --muted: #666; --rule: #D8D5CA; }
+  * { box-sizing: border-box; }
+  html { font-size: 10.5pt; }
+  body { font-family: "Source Serif 4", Georgia, serif; color: var(--ink); line-height: 1.38; margin: 0; }
+  a { color: var(--burgundy); text-decoration: none; }
+  h1 { font-size: 22pt; font-weight: 600; margin: 0; color: var(--olive-dark); letter-spacing: -.01em; }
+  h2 { font-family: "Source Sans 3", sans-serif; font-size: 11pt; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--olive); border-bottom: 1.2pt solid var(--olive); padding-bottom: 2pt; margin: 14pt 0 6pt; page-break-after: avoid; }
+  h3 { font-family: "Source Sans 3", sans-serif; font-size: 10pt; font-weight: 700; color: var(--burgundy); margin: 9pt 0 3pt; page-break-after: avoid; }
+  .head { display: flex; gap: 14pt; align-items: flex-start; border-bottom: 2pt solid var(--olive); padding-bottom: 10pt; }
+  .head img { width: 26mm; height: 34.6mm; object-fit: cover; border-radius: 2pt; }
+  .head .txt { flex: 1; }
+  .head .tagline { margin: 2pt 0 5pt; color: var(--burgundy); font-style: italic; }
+  .head .meta { font-family: "Source Sans 3", sans-serif; font-size: 8.8pt; color: var(--muted); margin: 0; line-height: 1.5; }
+  .head .meta a { color: var(--muted); }
+  ul { margin: 0; padding: 0; list-style: none; }
+  .entries > li { display: grid; grid-template-columns: 26mm 1fr; column-gap: 8pt; margin-bottom: 5pt; page-break-inside: avoid; }
+  .when { font-family: "Source Sans 3", sans-serif; font-size: 9pt; color: var(--muted); font-variant-numeric: tabular-nums; padding-top: 1.5pt; }
+  .title { font-weight: 600; }
+  .venue, .note, .co { display: block; font-size: 9.6pt; }
+  .venue { color: #333; }
+  .co { color: var(--muted); }
+  .doi { font-family: "Source Sans 3", sans-serif; font-size: 8.5pt; }
+  .details { margin: 2pt 0 0 10pt; list-style: disc; font-size: 9.6pt; }
+  .details li { margin: 0; }
+  .interests { list-style: disc; margin-left: 12pt; }
+  .badge { font-family: "Source Sans 3", sans-serif; font-size: 7.5pt; text-transform: uppercase; letter-spacing: .06em; color: var(--burgundy); border: .6pt solid var(--burgundy); border-radius: 3pt; padding: 0 3pt; margin-right: 3pt; vertical-align: 1pt; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; column-gap: 18pt; }
+  dl { margin: 0; } dt { font-weight: 600; } dd { margin: 0 0 4pt; }
+  .langs div { display: flex; justify-content: space-between; border-bottom: .4pt dotted var(--rule); padding: 1pt 0; }
+  .plain li { margin-bottom: 3pt; }
+  .muted { color: var(--muted); }
+  .small { font-size: 9pt; }
+</style>
+</head>
+<body>
+
+<header class="head">
+  <img src="../static/{{ profile.photo.portrait }}" alt="">
+  <div class="txt">
+    <h1>{{ profile.name }}, {{ profile.degrees }}</h1>
+    <p class="tagline">{{ profile.tagline|t }}</p>
+    <p class="meta">
+      {% for e in profile.emails %}<a href="mailto:{{ e }}">{{ e }}</a>{% if not loop.last %} · {% endif %}{% endfor %}<br>
+      ORCID <a href="https://orcid.org/{{ profile.orcid }}">{{ profile.orcid }}</a> ·
+      <a href="{{ site_url }}{{ base }}">{{ site_url|replace('https://', '') }}</a> ·
+      Bluesky <a href="https://bsky.app/profile/{{ profile.bluesky.handle }}">@{{ profile.bluesky.handle }}</a> ·
+      <a href="{{ profile.linkedin }}">LinkedIn</a> ·
+      <a href="https://github.com/{{ profile.github }}">GitHub</a>
+    </p>
+  </div>
+</header>
+
+<h2>{{ ui.research_interests|t }}</h2>
+<ul class="interests">
+  {% for i in profile.research_interests %}<li>{{ i|t }}</li>{% endfor %}
+</ul>
+
+<h2>{{ ui.positions|t }}</h2>
+<ul class="entries">
+  {% for p in cv.positions %}
+  <li>
+    <span class="when">{{ p|period }}</span>
+    <div>
+      <span class="title">{{ p.title|t }}</span>
+      <span class="venue">{{ p.institution|t }}</span>
+      {% if p.project %}<span class="note">{{ p.project|t }}</span>{% endif %}
+      {% if p.details %}<ul class="details">{% for d in p.details %}<li>{{ d|t }}</li>{% endfor %}</ul>{% endif %}
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+
+<h2>{{ ui.education|t }}</h2>
+<ul class="entries">
+  {% for e in cv.education %}
+  <li>
+    <span class="when">{{ e|period }}</span>
+    <div>
+      <span class="title">{{ e.title|t }}</span>{% if e.note %} <span class="muted">({{ e.note|t }})</span>{% endif %}
+      <span class="venue">{{ e.institution|t }}</span>
+      {% if e.thesis %}<span class="note">{{ ui.thesis|t }}: „{{ e.thesis }}“</span>{% endif %}
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+
+<h2>{{ ui.publications|t }}</h2>
+{% for cat, key in [('journal', 'pub_journal'), ('proceedings', 'pub_proceedings'), ('editions', 'pub_editions'), ('blog', 'pub_blog')] %}
+  {% if cv.publications[cat] %}
+  <h3>{{ ui[key]|t }}</h3>
+  <ul class="entries">
+    {% for p in cv.publications[cat] %}
+    <li>
+      <span class="when">{{ p.year_label|t if p.year_label else p.year }}</span>
+      <div>
+        <span class="title">{{ p.title }}</span>
+        {% if p.venue %}<span class="venue">{{ p.venue|t }}</span>{% endif %}
+        {% if p.coauthors %}<span class="co">{{ ui.with|t }} {{ p.coauthors|join(', ') }}</span>{% endif %}
+        {% if p.doi %}<a class="doi" href="https://doi.org/{{ p.doi }}">DOI: {{ p.doi }}</a>{% elif p.url %}<a class="doi" href="{{ p.url }}">{{ p.url }}</a>{% endif %}
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+{% endfor %}
+{% if auto_pubs %}
+<h3>{{ ui.pub_auto|t }}</h3>
+<ul class="entries">
+  {% for a in auto_pubs %}
+  <li>
+    <span class="when">{{ a.date|date }}</span>
+    <div>
+      <span class="title">{{ a.title }}</span>
+      <span class="venue"><span class="badge">{{ ui[a.type_key]|t }}</span>{% if a.journal %}{{ a.journal }}{% endif %}</span>
+      {% if a.creators %}<span class="co">{{ a.creators|join('; ') }}</span>{% endif %}
+      {% if a.doi %}<a class="doi" href="https://doi.org/{{ a.doi }}">DOI: {{ a.doi }}</a>{% endif %}
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<h2>{{ ui.talks|t }}</h2>
+<ul class="entries">
+  {% for x in cv.talks %}
+  <li>
+    <span class="when">{{ x.date|date }}</span>
+    <div>
+      <span class="title">{{ x.title }}</span>
+      <span class="venue"><span class="badge">{{ ui['type_' ~ x.type]|t }}</span>{{ x.venue|t }}</span>
+      {% if x.coauthors %}<span class="co">{{ ui.with|t }} {{ x.coauthors|join(', ') }}</span>{% endif %}
+      {% if x.doi %}<a class="doi" href="https://doi.org/{{ x.doi }}">DOI: {{ x.doi }}</a>{% endif %}
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+
+<h2>{{ ui.teaching|t }}</h2>
+<ul class="entries">
+  {% for x in cv.teaching %}
+  <li>
+    <span class="when">{{ x.date|date }}</span>
+    <div>
+      <span class="title">{{ x.title }}</span>
+      <span class="venue"><span class="badge">{{ ui['type_' ~ x.type]|t }}</span>{{ x.venue|t }}</span>
+      {% if x.doi %}<a class="doi" href="https://doi.org/{{ x.doi }}">DOI: {{ x.doi }}</a>{% endif %}
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+
+<h2>{{ ui.organisation|t }}</h2>
+<ul class="plain">
+  {% for o in cv.organisation %}<li>{{ o|t }}</li>{% endfor %}
+</ul>
+
+<div class="two">
+  <div>
+    <h2>{{ ui.skills|t }}</h2>
+    <dl>
+      {% for s in cv.skills %}
+      <dt>{{ s.label|t }}</dt>
+      <dd>{% for i in s['items'] %}{{ i|t }}{% if not loop.last %}, {% endif %}{% endfor %}</dd>
+      {% endfor %}
+    </dl>
+  </div>
+  <div>
+    <h2>{{ ui.languages|t }}</h2>
+    <dl class="langs">
+      {% for l in cv.languages %}<div><dt>{{ l.name|t }}</dt><dd>{{ l.level|t }}</dd></div>{% endfor %}
+    </dl>
+  </div>
+</div>
+
+<p class="muted small" style="margin-top:14pt">{{ ui.last_updated|t }}: {{ build_date|date }} · {{ site_url|replace('https://', '') }}{{ base }}{{ lang }}/cv/</p>
+
+</body>
+</html>

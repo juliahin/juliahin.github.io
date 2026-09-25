@@ -1,0 +1,18 @@
+# private source documents (contain address / birth date) - never commit
+CV-*.txt
+CV-*.docx
+*.docx
+# build output
+_site/
+# python
+__pycache__/
+*.pyc
+.venv/
+# editor / OS
+.vscode/
+.DS_Store
+Thumbs.db
+
+# original full-size photo (6 MB) - only the resized copies in static/img are committed
+IMG_*.JPG
+IMG_*.jpg

@@ -1,0 +1,26 @@
+/* Theme "Codex": clean academic. Warm paper, serif text, olive structure, burgundy links. */
+:root {
+  --bg: #FBF9F4;
+  --bg-elevated: #FFFFFF;
+  --fg: #22261C;
+  --fg-muted: #5F6555;
+  --rule: #DFDACB;
+  --accent: #556B2F;
+  --accent-strong: #3F5220;
+  --accent-soft: #E7EBD9;
+  --accent-2: #7A1F2E;
+  --accent-2-soft: #F3E3E6;
+  --link: #7A1F2E;
+  --link-hover: #5C1622;
+  --heading-font: var(--font-serif);
+  --body-font: var(--font-serif);
+  --identity-bg: transparent;
+  --nav-bg: #F4F1E8;
+}
+.site-nav { border-bottom: 1px solid #E4DFD0; }
+.site-nav .brand { color: var(--accent-strong); }
+.page-home .identity { padding-top: 2.5rem; }
+.identity .name { color: var(--accent-strong); }
+.section > h2 { border-bottom: 1px solid var(--rule); position: relative; }
+.section > h2::after { content: ""; position: absolute; left: 0; bottom: -1px; width: 3rem; height: 3px; background: var(--accent-2); }
+.portrait { border-color: #fff; box-shadow: 0 0 0 1px var(--rule), var(--shadow); }

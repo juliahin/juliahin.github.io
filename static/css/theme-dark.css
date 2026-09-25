@@ -1,0 +1,36 @@
+/* Theme "Dark": deep olive-black background, cream serif headings, light olive labels, rosé-burgundy links. */
+:root {
+  color-scheme: dark;
+  --bg: #171B12;
+  --bg-elevated: #20261A;
+  --fg: #E8E4D8;
+  --fg-muted: #A8AD9A;
+  --rule: #343C2A;
+  --accent: #8A9A5B;
+  --accent-strong: #B3BE8E;
+  --accent-soft: #2B3521;
+  --accent-2: #CF6F81;
+  --accent-2-soft: #3F1F26;
+  --link: #D98A99;
+  --link-hover: #F0B4BF;
+  --heading-font: var(--font-serif);
+  --body-font: var(--font-serif);
+  --identity-bg: transparent;
+  --identity-fg: #F4F1E8;
+  --identity-muted: #A8AD9A;
+  --nav-bg: #11140D;
+  --shadow: 0 1px 2px rgba(0,0,0,.4), 0 6px 18px rgba(0,0,0,.35);
+}
+.site-nav { border-bottom-color: #2A3121; }
+.site-nav .brand { color: var(--accent-strong); }
+.identity .name { color: #FFFDF7; }
+.identity-links a { background: var(--bg-elevated); }
+.portrait { border-color: var(--accent); }
+.section > h2 { border-bottom-color: var(--accent); }
+.btn-primary { color: #11140D; }
+.btn-primary:hover { color: #11140D; background: var(--accent-strong); }
+.tag { background: var(--accent-soft); color: var(--accent-strong); }
+.card { border-left-color: var(--accent-2); }
+.post-embed { background: #171B12; }
+.badge { color: var(--accent-2); }
+.notfound h1 { color: var(--accent-strong); }

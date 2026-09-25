@@ -1,0 +1,65 @@
+/* Theme "Sidebar": modern. Deep olive identity column, sans-serif body, burgundy accents. */
+:root {
+  --bg: #F7F7F3;
+  --bg-elevated: #FFFFFF;
+  --fg: #1F2419;
+  --fg-muted: #5C6354;
+  --rule: #E0E0D6;
+  --accent: #556B2F;
+  --accent-strong: #3F5220;
+  --accent-soft: #E7EBD9;
+  --accent-2: #8E2A3B;
+  --accent-2-soft: #F3E3E6;
+  --link: #8E2A3B;
+  --link-hover: #5C1622;
+  --heading-font: var(--font-serif);
+  --body-font: var(--font-sans);
+  --identity-bg: #33421F;
+  --identity-fg: #F4F1E8;
+  --identity-muted: #C9D1B0;
+  --nav-bg: #FFFFFF;
+  --measure: 50rem;
+}
+body { font-size: 1.05rem; }
+h2 { font-family: var(--font-serif); }
+
+/* identity column styling (any width) */
+.identity { max-width: none; padding: 2rem 1.25rem 1.5rem; }
+.identity .name { color: #fff; }
+.identity .tagline { color: #E8B4BE; }
+.identity-links a { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.22); color: var(--identity-fg); }
+.identity-links a:hover { background: rgba(255,255,255,.14); color: #fff; border-color: rgba(255,255,255,.5); }
+.portrait { border-color: rgba(255,255,255,.35); box-shadow: 0 6px 24px rgba(0,0,0,.25); }
+body:not(.page-home) .identity .location,
+body:not(.page-home) .identity-links { display: flex; }
+.site-nav { border-bottom: 1px solid var(--rule); }
+.site-nav .brand { display: none; }
+.section > h2 { border-bottom: 0; padding-left: .75rem; border-left: 4px solid var(--accent-2); }
+.card { border-left-color: var(--accent-2); }
+.btn-primary { background: var(--accent-2); border-color: var(--accent-2); }
+.btn-primary:hover { background: #5C1622; border-color: #5C1622; }
+
+/* wide screens: sticky sidebar on the left, nav + content on the right */
+@media (min-width: 900px) {
+  .layout {
+    grid-template-columns: 19rem minmax(0, 1fr);
+    grid-template-areas: "identity nav" "identity content";
+    grid-template-rows: auto 1fr;
+  }
+  .identity {
+    position: sticky; top: 0; height: 100vh; overflow: auto;
+    grid-template-columns: 1fr; align-content: start; gap: 1rem;
+    padding: 2.5rem 1.5rem;
+  }
+  .portrait { width: 10rem; height: 10rem; margin: 0 auto; }
+  body:not(.page-home) .portrait { width: 10rem; height: 10rem; border-width: 3px; }
+  .identity-text { text-align: center; }
+  .identity .name { font-size: 1.7rem; }
+  body:not(.page-home) .identity .name { font-size: 1.7rem; }
+  body:not(.page-home) .identity .tagline { font-size: 1.05rem; }
+  .identity-links { justify-content: center; }
+  main { padding: 1.5rem 2.5rem 3rem; margin: 0; }
+  .site-footer { margin: 0; padding-left: 2.5rem; padding-right: 2.5rem; }
+  .site-nav { padding: 1rem 2.5rem; }
+  .site-nav .brand { display: block; }
+}

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as m with context %}
+{% block content %}
+
+<section class="section intro" id="about">
+  <h2 class="visually-hidden">{{ ui.about|t }}</h2>
+  <p class="lede">{{ profile.intro|t }}</p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="{{ base }}{{ lang }}/cv/">{{ ui.nav_cv|t }}</a>
+    <a class="btn" href="{{ base }}{{ lang }}/publications/">{{ ui.nav_publications|t }}</a>
+    <a class="btn" href="{{ base }}{{ lang }}/{{ pdf_names[lang] }}">{{ m.icon('pdf') }} {{ ui.download_cv|t }}</a>
+  </div>
+</section>
+
+<section class="section two-col">
+  <div>
+    <h2>{{ ui.current_roles|t }}</h2>
+    <ul class="roles">
+      {% for r in profile.current_roles %}
+      <li><strong>{{ r.title|t }}</strong><br><a href="{{ r.url }}">{{ r.org|t }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div>
+    <h2>{{ ui.research_interests|t }}</h2>
+    <ul class="interests">
+      {% for i in profile.research_interests %}<li>{{ i|t }}</li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <h2>{{ ui.projects|t }}</h2>
+  <ul class="cards">
+    {% for p in profile.projects %}
+    <li class="card">
+      <h3><a href="{{ p.url }}">{{ p.name }}</a></h3>
+      <p>{{ p|t }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="section" id="latest">
+  <h2>{{ ui.latest|t }}</h2>
+  <div class="latest-grid">
+    <div class="latest-col">
+      <h3>{{ ui.latest_posts|t }}</h3>
+      {% if bluesky.posts %}
+      <div class="posts">
+        {% for p in bluesky.posts[:3] %}{{ m.bsky_post(p) }}{% endfor %}
+      </div>
+      {% endif %}
+      <p class="more"><a href="{{ bluesky.url or ('https://bsky.app/profile/' ~ profile.bluesky.handle) }}">{{ ui.follow_on_bluesky|t }} → @{{ profile.bluesky.handle }}</a></p>
+    </div>
+    <div class="latest-col">
+      <h3>{{ ui.latest_blog|t }}</h3>
+      {% if blog.posts %}
+      <div class="posts">
+        {% for p in blog.posts[:3] %}{{ m.blog_post(p) }}{% endfor %}
+      </div>
+      {% endif %}
+      <p class="more"><a href="{{ profile.blog.url }}">{{ profile.blog.title }} →</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="recent-publications">
+  <h2>{{ ui.latest_publications|t }}</h2>
+  <ul class="entries">
+    {% for p in recent %}
+      {% if p.category == 'auto' %}{{ m.auto_item(p) }}{% else %}{{ m.pub(p) }}{% endif %}
+    {% endfor %}
+  </ul>
+  <p class="more"><a href="{{ base }}{{ lang }}/publications/">{{ ui.all_publications|t }} →</a></p>
+</section>
+
+<section class="section contact" id="contact">
+  <h2>{{ ui.contact|t }}</h2>
+  <ul class="contact-list">
+    {% for e in profile.emails %}<li>{{ m.icon('mail') }} <a href="mailto:{{ e }}">{{ e }}</a></li>{% endfor %}
+    <li>{{ m.icon('orcid') }} <a href="https://orcid.org/{{ profile.orcid }}">orcid.org/{{ profile.orcid }}</a></li>
+    <li>{{ m.icon('bluesky') }} <a href="https://bsky.app/profile/{{ profile.bluesky.handle }}">@{{ profile.bluesky.handle }}</a></li>
+    <li>{{ m.icon('linkedin') }} <a href="{{ profile.linkedin }}">LinkedIn</a></li>
+    <li>{{ m.icon('github') }} <a href="https://github.com/{{ profile.github }}">github.com/{{ profile.github }}</a></li>
+  </ul>
+</section>
+
+{% endblock %}

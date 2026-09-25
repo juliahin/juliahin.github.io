@@ -1,0 +1,74 @@
+name: Build and deploy
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "17 5 * * *"      # daily at 05:17 UTC: refresh ORCID / Zenodo / Bluesky / blog data
+  workflow_dispatch:
+
+permissions:
+  contents: write             # commit refreshed data/auto/*.json
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install system libraries for WeasyPrint (PDF)
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q libpango-1.0-0 libpangoft2-1.0-0 libharfbuzz-subset0 fonts-dejavu-core
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch public data (ORCID, Zenodo, Bluesky, Hypotheses)
+        run: python scripts/fetch.py
+
+      - name: Commit refreshed data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/auto
+          # ignore changes that only touch the fetched_at timestamp
+          if git diff --cached --quiet -I '"fetched_at"'; then
+            echo "no data changes"
+          else
+            git commit -m "data: refresh ORCID / Zenodo / Bluesky / blog ($(date -u +%F))"
+            git pull --rebase origin main
+            git push
+          fi
+
+      - name: Build site and PDF
+        run: python build.py --require-pdf
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

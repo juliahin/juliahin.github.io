@@ -1,0 +1,187 @@
+{
+  "handle": "juliekovsky.bsky.social",
+  "did": "did:plc:f2frokxg4j4u6nqwrvfhuniv",
+  "display_name": "Julia Hintersteiner",
+  "url": "https://bsky.app/profile/juliekovsky.bsky.social",
+  "followers": 29,
+  "posts_count": 8,
+  "posts": [
+    {
+      "uri": "at://did:plc:f2frokxg4j4u6nqwrvfhuniv/app.bsky.feed.post/3mwdbwmilyc2x",
+      "url": "https://bsky.app/profile/juliekovsky.bsky.social/post/3mwdbwmilyc2x",
+      "created_at": "2026-09-25T07:50:42.733Z",
+      "text": "Wie bringt man einem LLM böhmische Schreibgewohnheiten bei?\n\nAm Beispiel der Wenzelsbibel zeigt mein CLARIAH-AT-Projekt (WB-DEA meets MHDBDB), wie historische Sprachvarianten digital aufbereitet und an die MHDBDB angebunden werden:\n\nmittelalter.hypotheses.org/41016\n\n#DigitalHumanities #Mittelalter",
+      "segments": [
+        {
+          "text": "Wie bringt man einem LLM böhmische Schreibgewohnheiten bei?\n\nAm Beispiel der Wenzelsbibel zeigt mein CLARIAH-AT-Projekt (WB-DEA meets MHDBDB), wie historische Sprachvarianten digital aufbereitet und an die MHDBDB angebunden werden:\n\n"
+        },
+        {
+          "text": "mittelalter.hypotheses.org/41016",
+          "href": "https://mittelalter.hypotheses.org/41016"
+        },
+        {
+          "text": "\n\n"
+        },
+        {
+          "text": "#DigitalHumanities",
+          "href": "https://bsky.app/hashtag/DigitalHumanities"
+        },
+        {
+          "text": " "
+        },
+        {
+          "text": "#Mittelalter",
+          "href": "https://bsky.app/hashtag/Mittelalter"
+        }
+      ],
+      "external": {
+        "uri": "https://mittelalter.hypotheses.org/41016",
+        "title": "WB-DEA meets MHDBDB: Die Wenzelsbibel als Pilotmodell für interoperable Editionen",
+        "description": "1000 Worte Forschung: Miniprojekt (Digital Humanities/Germanistische Mediävistik) im Rahmen von CLARIAH-AT, Paris Lodron Universität Salzburg, 2025–2026 Wer die im Auftrag des böhmischen Königs Wenzel..."
+      },
+      "images": [],
+      "likes": 0,
+      "reposts": 1
+    },
+    {
+      "uri": "at://did:plc:f2frokxg4j4u6nqwrvfhuniv/app.bsky.feed.post/3mnz3wuedic2h",
+      "url": "https://bsky.app/profile/juliekovsky.bsky.social/post/3mnz3wuedic2h",
+      "created_at": "2026-06-11T11:15:18.126Z",
+      "text": "„Bildung ist eine zentrale Zukunftsinvestition“, schreibt das Bundeskanzleramt. Doch jetzt plant die Bundesregierung massive Kürzungen bei den Universitäten. Das gefährdet Forschung, Lehre und damit unsere gemeinsame Zukunft.  mein.aufstehn.at/petitions/un...",
+      "segments": [
+        {
+          "text": "„Bildung ist eine zentrale Zukunftsinvestition“, schreibt das Bundeskanzleramt. Doch jetzt plant die Bundesregierung massive Kürzungen bei den Universitäten. Das gefährdet Forschung, Lehre und damit unsere gemeinsame Zukunft.  "
+        },
+        {
+          "text": "mein.aufstehn.at/petitions/un...",
+          "href": "https://mein.aufstehn.at/petitions/unisretten-keine-kurzungen-bei-den-universitaten?source=bluesky&utm_source=bluesky&share=c7c41c3f-a33f-4208-b7e3-2db03aba89c4"
+        }
+      ],
+      "external": {
+        "uri": "https://mein.aufstehn.at/petitions/unisretten-keine-kurzungen-bei-den-universitaten?source=bluesky&utm_source=bluesky&share=c7c41c3f-a33f-4208-b7e3-2db03aba89c4",
+        "title": "Jetzt unterzeichnen: #unisretten – keine Kürzungen bei den Universitäten!",
+        "description": "Die Regierung plant massive Einsparungen bei den Universitäten. Forschung, Lehre und freie Wissenschaft stehen jetzt auf dem Spiel."
+      },
+      "images": [],
+      "likes": 0,
+      "reposts": 1
+    },
+    {
+      "uri": "at://did:plc:f2frokxg4j4u6nqwrvfhuniv/app.bsky.feed.post/3mnwyxgrryk2e",
+      "url": "https://bsky.app/profile/juliekovsky.bsky.social/post/3mnwyxgrryk2e",
+      "created_at": "2026-06-10T15:16:36.738Z",
+      "text": "Sehr treffender Notizbucheintrag von #PeterHandke zur Vortragsvorbereitung gerade:\n\n\"Manchmal plagt mich doch die\nVorstellung, was ich überhaupt\nnoch weiß über die Notizen hinaus,\ndie ich hier mache?\"\n\nNotizbuch 08.05.1976-13.06.1976 (NB 005). URL: edition.onb.ac.at/fedora/objec....",
+      "segments": [
+        {
+          "text": "Sehr treffender Notizbucheintrag von "
+        },
+        {
+          "text": "#PeterHandke",
+          "href": "https://bsky.app/hashtag/PeterHandke"
+        },
+        {
+          "text": " zur Vortragsvorbereitung gerade:\n\n\"Manchmal plagt mich doch die\nVorstellung, was ich überhaupt\nnoch weiß über die Notizen hinaus,\ndie ich hier mache?\"\n\nNotizbuch 08.05.1976-13.06.1976 (NB 005). URL: "
+        },
+        {
+          "text": "edition.onb.ac.at/fedora/objec...",
+          "href": "https://edition.onb.ac.at/fedora/objects/o:hnb.nb.197605-197606/methods/sdef:TEI/get?mode=p_61"
+        },
+        {
+          "text": "."
+        }
+      ],
+      "external": {
+        "uri": "https://edition.onb.ac.at/fedora/objects/o:hnb.nb.197605-197606/methods/sdef:TEI/get?mode=p_61",
+        "title": "Notizbuch 08.05.1976-13.06.1976 (NB 005)",
+        "description": ""
+      },
+      "images": [],
+      "likes": 0,
+      "reposts": 0
+    },
+    {
+      "uri": "at://did:plc:f2frokxg4j4u6nqwrvfhuniv/app.bsky.feed.post/3mfk74tmpcc2w",
+      "url": "https://bsky.app/profile/juliekovsky.bsky.social/post/3mfk74tmpcc2w",
+      "created_at": "2026-02-23T17:40:50.805Z",
+      "text": "KI trifft Wenzelsbibel! 🤖📜\nDrew Thomas & ich haben eine RAG-Pipeline für Iconclass-Klassifizierung in Handschriften gebaut. Unser Paper ist jetzt Open Access: doi.org/10.3390/hist...              \nMehr dazu am Mittwoch auf der #DHd2026!",
+      "segments": [
+        {
+          "text": "KI trifft Wenzelsbibel! 🤖📜\nDrew Thomas & ich haben eine RAG-Pipeline für Iconclass-Klassifizierung in Handschriften gebaut. Unser Paper ist jetzt Open Access: "
+        },
+        {
+          "text": "doi.org/10.3390/hist...",
+          "href": "https://doi.org/10.3390/histories6010017"
+        },
+        {
+          "text": "              \nMehr dazu am Mittwoch auf der "
+        },
+        {
+          "text": "#DHd2026",
+          "href": "https://bsky.app/hashtag/DHd2026"
+        },
+        {
+          "text": "!"
+        }
+      ],
+      "external": null,
+      "images": [],
+      "likes": 2,
+      "reposts": 1
+    },
+    {
+      "uri": "at://did:plc:f2frokxg4j4u6nqwrvfhuniv/app.bsky.feed.post/3ltokgutqgk22",
+      "url": "https://bsky.app/profile/juliekovsky.bsky.social/post/3ltokgutqgk22",
+      "created_at": "2025-07-11T09:40:28.429Z",
+      "text": "Had an absolute blast this week at #IMC2025! Incredible papers, inspiring discussions, and even lovelier people. Already looking forward to next time! 🏰",
+      "segments": [
+        {
+          "text": "Had an absolute blast this week at "
+        },
+        {
+          "text": "#IMC2025",
+          "href": "https://bsky.app/hashtag/IMC2025"
+        },
+        {
+          "text": "! Incredible papers, inspiring discussions, and even lovelier people. Already looking forward to next time! 🏰"
+        }
+      ],
+      "external": null,
+      "images": [
+        {
+          "thumb": "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:f2frokxg4j4u6nqwrvfhuniv/bafkreif6k53jvj6aqguno7zmqjhqoz2btalxpzw6ecwrv5xuyqbi4ak35q",
+          "alt": ""
+        },
+        {
+          "thumb": "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:f2frokxg4j4u6nqwrvfhuniv/bafkreie27wrtylzbpdffndo45ry2szvv3ajq65qhcaxtvpzkfrdsxzbtkq",
+          "alt": ""
+        },
+        {
+          "thumb": "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:f2frokxg4j4u6nqwrvfhuniv/bafkreihkx4ag3kfmcjui7mglr26xqp3g57ccmrnoqg3vmfyutqopwychcm",
+          "alt": ""
+        },
+        {
+          "thumb": "https://cdn.bsky.app/img/feed_thumbnail/plain/did:plc:f2frokxg4j4u6nqwrvfhuniv/bafkreibq6b4tqkgau55zldblknxdwil3i5oz7pbawsrpm57sjgnbhteqoq",
+          "alt": ""
+        }
+      ],
+      "likes": 6,
+      "reposts": 1
+    },
+    {
+      "uri": "at://did:plc:f2frokxg4j4u6nqwrvfhuniv/app.bsky.feed.post/3lsgtozrj4c2r",
+      "url": "https://bsky.app/profile/juliekovsky.bsky.social/post/3lsgtozrj4c2r",
+      "created_at": "2025-06-25T14:39:36.190Z",
+      "text": "Gerade auf einer Podiumsdiskussion aufgeschnappt: Die Ratschlüsse des Herrn sind unergründlich - zum Blackbox-Charakter der „göttlichen KI“.",
+      "segments": [
+        {
+          "text": "Gerade auf einer Podiumsdiskussion aufgeschnappt: Die Ratschlüsse des Herrn sind unergründlich - zum Blackbox-Charakter der „göttlichen KI“."
+        }
+      ],
+      "external": null,
+      "images": [],
+      "likes": 0,
+      "reposts": 0
+    }
+  ],
+  "fetched_at": "2026-09-25T09:21:00+00:00"
+}

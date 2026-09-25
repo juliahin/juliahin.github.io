@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="utf-8">
+  <title>{{ profile.name }}</title>
+  <meta name="robots" content="noindex">
+  {% for l in langs %}
+  <link rel="alternate" hreflang="{{ l }}" href="{{ site_url }}{{ base }}{{ l }}/">
+  {% endfor %}
+  <link rel="alternate" hreflang="x-default" href="{{ site_url }}{{ base }}{{ lang }}/">
+  <script>
+    (function () {
+      var supported = {{ langs|tojson }};
+      var pref = (navigator.languages || [navigator.language || ""]).map(function (l) { return String(l).slice(0, 2).toLowerCase(); });
+      var target = "{{ lang }}";
+      for (var i = 0; i < pref.length; i++) { if (supported.indexOf(pref[i]) !== -1) { target = pref[i]; break; } }
+      location.replace("{{ base }}" + target + "/" + location.hash);
+    })();
+  </script>
+  <noscript><meta http-equiv="refresh" content="0; url={{ base }}{{ lang }}/"></noscript>
+  <style>body{font:16px system-ui,sans-serif;margin:3rem auto;max-width:30rem;padding:0 1rem}</style>
+</head>
+<body>
+  <p>{{ profile.name }}</p>
+  <ul>
+    {% for l in langs %}<li><a href="{{ base }}{{ l }}/" hreflang="{{ l }}">{{ 'Deutsch' if l == 'de' else 'English' }}</a></li>{% endfor %}
+  </ul>
+</body>
+</html>

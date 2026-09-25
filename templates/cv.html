@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as m with context %}
+{% block content %}
+
+<header class="page-header">
+  <h1>{{ ui.cv_title|t }}</h1>
+  <a class="btn" href="{{ base }}{{ lang }}/{{ pdf_names[lang] }}">{{ m.icon('pdf') }} {{ ui.download_cv|t }}</a>
+</header>
+
+<nav class="toc" aria-label="{{ 'Abschnitte' if lang == 'de' else 'Sections' }}">
+  <a href="#positions">{{ ui.positions|t }}</a>
+  <a href="#education">{{ ui.education|t }}</a>
+  <a href="#publications">{{ ui.publications|t }}</a>
+  <a href="#talks">{{ ui.talks|t }}</a>
+  <a href="#teaching">{{ ui.teaching|t }}</a>
+  <a href="#organisation">{{ ui.organisation|t }}</a>
+  <a href="#skills">{{ ui.skills|t }}</a>
+  <a href="#languages">{{ ui.languages|t }}</a>
+</nav>
+
+<section class="section" id="research">
+  <h2>{{ ui.research_interests|t }}</h2>
+  <ul class="interests">
+    {% for i in profile.research_interests %}<li>{{ i|t }}</li>{% endfor %}
+  </ul>
+</section>
+
+<section class="section" id="positions">
+  <h2>{{ ui.positions|t }}</h2>
+  <ul class="entries timeline">
+    {% for p in cv.positions %}{{ m.position(p) }}{% endfor %}
+  </ul>
+</section>
+
+<section class="section" id="education">
+  <h2>{{ ui.education|t }}</h2>
+  <ul class="entries timeline">
+    {% for e in cv.education %}{{ m.education(e) }}{% endfor %}
+  </ul>
+</section>
+
+<section class="section" id="publications">
+  <h2>{{ ui.publications|t }}</h2>
+  {% for cat, key in [('journal', 'pub_journal'), ('proceedings', 'pub_proceedings'), ('editions', 'pub_editions'), ('blog', 'pub_blog')] %}
+    {% if cv.publications[cat] %}
+    <h3>{{ ui[key]|t }}</h3>
+    <ul class="entries">
+      {% for p in cv.publications[cat] %}{{ m.pub(p) }}{% endfor %}
+    </ul>
+    {% endif %}
+  {% endfor %}
+  {% if auto_pubs %}
+  <h3>{{ ui.pub_auto|t }}</h3>
+  <p class="muted small">{{ ui.pub_auto_note|t }}</p>
+  <ul class="entries">
+    {% for a in auto_pubs %}{{ m.auto_item(a) }}{% endfor %}
+  </ul>
+  {% endif %}
+</section>
+
+<section class="section" id="talks">
+  <h2>{{ ui.talks|t }}</h2>
+  <ul class="entries">
+    {% for x in cv.talks %}{{ m.talk(x) }}{% endfor %}
+  </ul>
+</section>
+
+<section class="section" id="teaching">
+  <h2>{{ ui.teaching|t }}</h2>
+  <ul class="entries">
+    {% for x in cv.teaching %}{{ m.talk(x) }}{% endfor %}
+  </ul>
+</section>
+
+<section class="section" id="organisation">
+  <h2>{{ ui.organisation|t }}</h2>
+  <ul class="plain">
+    {% for o in cv.organisation %}<li>{{ o|t }}</li>{% endfor %}
+  </ul>
+</section>
+
+<section class="section two-col" id="skills">
+  <div>
+    <h2>{{ ui.skills|t }}</h2>
+    <dl class="skills">
+      {% for s in cv.skills %}
+      <dt>{{ s.label|t }}</dt>
+      <dd>{% for i in s['items'] %}<span class="tag">{{ i|t }}</span>{% endfor %}</dd>
+      {% endfor %}
+    </dl>
+  </div>
+  <div id="languages">
+    <h2>{{ ui.languages|t }}</h2>
+    <dl class="languages">
+      {% for l in cv.languages %}
+      <div><dt>{{ l.name|t }}</dt><dd>{{ l.level|t }}</dd></div>
+      {% endfor %}
+    </dl>
+  </div>
+</section>
+
+{% endblock %}

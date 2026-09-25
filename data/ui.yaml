@@ -1,0 +1,78 @@
+# Interface strings. Keys are used in templates as ui[key][lang].
+site_title:        {de: Julia Hintersteiner, en: Julia Hintersteiner}
+meta_description:
+  de: Julia Hintersteiner – Digital Humanities, Mediävistik und digitale Editionen. Forschung, Publikationen, Vorträge und Lebenslauf.
+  en: Julia Hintersteiner – Digital Humanities, medieval studies and digital editions. Research, publications, talks and CV.
+nav_home:          {de: Start, en: Home}
+nav_cv:            {de: Lebenslauf, en: CV}
+nav_publications:  {de: Publikationen, en: Publications}
+nav_contact:       {de: Kontakt, en: Contact}
+switch_lang:       {de: English, en: Deutsch}
+switch_lang_label: {de: Zur englischen Version wechseln, en: Switch to German version}
+skip_to_content:   {de: Zum Inhalt springen, en: Skip to content}
+
+about:             {de: Über mich, en: About}
+research_interests: {de: Forschungsschwerpunkte, en: Research interests}
+current_roles:     {de: Aktuelle Positionen, en: Current positions}
+projects:          {de: Projekte, en: Projects}
+latest:            {de: Aktuelles, en: Latest}
+latest_posts:      {de: Neues auf Bluesky, en: Latest on Bluesky}
+latest_blog:       {de: Neues im Blog, en: Latest blog posts}
+latest_publications: {de: Neueste Publikationen, en: Recent publications}
+all_publications:  {de: Alle Publikationen, en: All publications}
+view_on_bluesky:   {de: Auf Bluesky ansehen, en: View on Bluesky}
+follow_on_bluesky: {de: Auf Bluesky folgen, en: Follow on Bluesky}
+read_more:         {de: Weiterlesen, en: Read more}
+contact:           {de: Kontakt, en: Contact}
+links:             {de: Links, en: Links}
+email:             {de: E-Mail, en: Email}
+download_cv:       {de: Lebenslauf als PDF, en: Download CV (PDF)}
+download_cv_short: {de: PDF, en: PDF}
+last_updated:      {de: Zuletzt aktualisiert, en: Last updated}
+data_sources:      {de: "Publikationen und Beiträge werden täglich automatisch aus ORCID, Zenodo, Bluesky und Hypotheses aktualisiert.", en: "Publications and posts are refreshed daily from ORCID, Zenodo, Bluesky and Hypotheses."}
+source_code:       {de: Quellcode, en: Source code}
+imprint_note:      {de: Diese Seite setzt keine Cookies und lädt keine Inhalte von Drittanbietern., en: This site sets no cookies and loads no third-party content.}
+
+# CV section titles
+cv_title:          {de: Lebenslauf, en: Curriculum Vitae}
+education:         {de: Ausbildung, en: Education}
+positions:         {de: Wissenschaftlicher Werdegang, en: Academic positions}
+publications:      {de: Publikationen, en: Publications}
+talks:             {de: Vorträge und Posterpräsentationen, en: Talks and posters}
+teaching:          {de: Lehre und Workshops, en: Teaching and workshops}
+organisation:      {de: Organisationstätigkeit, en: Organisation and service}
+skills:            {de: Technische Kompetenzen, en: Technical skills}
+languages:         {de: Sprachen, en: Languages}
+present:           {de: heute, en: present}
+since:             {de: seit, en: since}
+until:             {de: bis, en: until}
+with:              {de: Gemeinsam mit, en: With}
+thesis:            {de: Masterarbeit, en: Master's thesis}
+
+# Publication categories
+pub_journal:       {de: Zeitschriftenaufsätze (peer-reviewed), en: Journal articles (peer-reviewed)}
+pub_proceedings:   {de: Beiträge in Tagungsbänden, en: Conference proceedings}
+pub_editions:      {de: "Digitale Editionen, Software und Daten", en: "Digital editions, software and data"}
+pub_blog:          {de: Blogbeiträge, en: Blog posts}
+pub_auto:          {de: Weitere Einträge, en: Further records}
+pub_auto_note:
+  de: Automatisch aus ORCID und Zenodo übernommen und noch nicht redaktionell eingeordnet.
+  en: Imported automatically from ORCID and Zenodo, not yet editorially sorted.
+
+# Talk / record types
+type_talk:         {de: Vortrag, en: Talk}
+type_poster:       {de: Posterpräsentation, en: Poster}
+type_lecture:      {de: Gastvortrag, en: Guest lecture}
+type_workshop:     {de: Workshop, en: Workshop}
+type_workshop_contribution: {de: Workshop-Beitrag, en: Workshop contribution}
+type_software:     {de: Software, en: Software}
+type_dataset:      {de: Datensatz, en: Dataset}
+type_presentation: {de: Vortrag, en: Presentation}
+type_publication:  {de: Publikation, en: Publication}
+type_journal_article: {de: Zeitschriftenaufsatz, en: Journal article}
+type_conference_paper: {de: Konferenzbeitrag, en: Conference paper}
+type_conference_poster: {de: Poster, en: Poster}
+type_image:        {de: Bild, en: Image}
+type_other:        {de: Sonstiges, en: Other}
+type_lesson:       {de: Lehrmaterial, en: Lesson}
+type_blog_post:    {de: Blogbeitrag, en: Blog post}

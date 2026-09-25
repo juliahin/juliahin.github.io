@@ -1,0 +1,252 @@
+# Curated CV data (source of truth: the Word CV). German is the original,
+# English is a translation. Titles of publications and talks are never translated.
+#
+# Dates: "YYYY-MM" or "YYYY". `end: present` marks a current position.
+# Publications: `doi` is used to de-duplicate against automatically fetched
+# ORCID / Zenodo records; `aliases` lists further DOIs / titles of the same work.
+
+education:
+  - start: 2022-02
+    end: 2025-02
+    title: {de: Masterstudium Digitale Geisteswissenschaften, en: Master's programme in Digital Humanities}
+    institution: {de: Universität Graz, en: University of Graz}
+    note: {de: ohne Abschluss, en: not completed}
+  - end: 2023-11
+    title: {de: Masterstudium Germanistik (Schwerpunkt Mediävistik), en: MA in German Studies (focus on Medieval Studies)}
+    institution: {de: Universität Graz, en: University of Graz}
+    thesis: "Text-Bild-Relationen in der Wenzelsbibel"
+  - end: 2022-02
+    title: {de: Bachelorstudium Kunstgeschichte, en: BA in Art History}
+    institution: {de: Universität Salzburg, en: University of Salzburg}
+  - start: 2021-09
+    end: 2022-02
+    title: {de: Erasmus-Auslandssemester, en: Erasmus exchange semester}
+    institution: {de: "Universiteit Utrecht, Niederlande", en: "Utrecht University, Netherlands"}
+  - end: 2020-01
+    title: {de: Bachelorstudium Germanistik, en: BA in German Studies}
+    institution: {de: Universität Salzburg, en: University of Salzburg}
+  - date: 2016-06
+    title: {de: Matura mit Auszeichnung, en: Matura (school leaving examination) with distinction}
+    institution: {de: Europagymnasium Baumgartenberg (Oberösterreich), en: Europagymnasium Baumgartenberg (Upper Austria)}
+
+positions:
+  - start: 2026-06
+    end: 2027-05
+    current: true
+    title: {de: Senior Scientist (Projektmitarbeiterin), en: Senior Scientist (project staff)}
+    institution: {de: "Mittelhochdeutsche Begriffsdatenbank (MHDBDB), Universität Salzburg", en: "Middle High German Conceptual Database (MHDBDB), University of Salzburg"}
+  - start: 2026-03
+    end: present
+    current: true
+    title: {de: Softwareentwicklerin mit Fokus Digital Humanities, en: Software Developer with a focus on Digital Humanities}
+    institution: {de: "Abteilung Forschung & Datenservices, Österreichische Nationalbibliothek", en: "Research & Data Services Department, Austrian National Library"}
+    project: {de: "Projekt „Peter Handke: Notizbücher. Digitale Edition“", en: "Project “Peter Handke: Notizbücher. Digitale Edition”"}
+  - start: 2026-01
+    end: 2026-04
+    title: {de: Projektleitung, en: Project lead}
+    institution: {de: "CLARIAH-AT-Projekt „WB-DEA meets MHDBDB“, Universität Salzburg", en: "CLARIAH-AT project “WB-DEA meets MHDBDB”, University of Salzburg"}
+    details:
+      - {de: Integration der Editionsdaten der Wenzelsbibel in die Datenstruktur der MHDBDB, en: Integration of the Wenceslas Bible edition data into the MHDBDB data structure}
+      - {de: Annotation und KI-gestützte Datenaufbereitung, en: Annotation and AI-assisted data preparation}
+      - {de: Entwicklung einer nachnutzbaren Pipeline zum Ingest weiterer Texte in die MHDBDB, en: Development of a reusable pipeline for ingesting further texts into the MHDBDB}
+  - start: 2025-11
+    end: 2026-07
+    title: {de: Projektmitarbeiterin, en: Project staff}
+    institution: {de: "„ÖSZD-ExilBriefe: Stefan und Lotte Zweigs Briefe aus dem Exil“, Literaturarchiv Salzburg", en: "“ÖSZD-ExilBriefe: Stefan und Lotte Zweigs Briefe aus dem Exil”, Literaturarchiv Salzburg"}
+    details:
+      - {de: Digitalisierung und Metadatenerhebung in TEI-XML, en: Digitisation and metadata capture in TEI-XML}
+  - start: 2024-10
+    end: 2025-12
+    title: {de: Senior Scientist (Projektmitarbeiterin), en: Senior Scientist (project staff)}
+    institution: {de: "Mittelhochdeutsche Begriffsdatenbank (MHDBDB), Universität Salzburg", en: "Middle High German Conceptual Database (MHDBDB), University of Salzburg"}
+    details:
+      - {de: "Vollständige Datenmigration der Datenbank von RDF zu TEI-only, Koordination und Evaluierung des Plattform-Relaunchs", en: "Complete migration of the database from RDF to TEI-only; coordination and evaluation of the platform relaunch"}
+      - {de: Datenaufbereitung und Kuratierung des gesamten TEI-Datenbestandes, en: Preparation and curation of the entire TEI data set}
+      - {de: Konzeption und Durchführung von User Acceptance Testing für die Neuentwicklung der MHDBDB-Oberfläche, en: Design and execution of user acceptance testing for the new MHDBDB interface}
+      - {de: "Projektmanagement und Koordination („MHDBDB goes AI“), Einwerbung von Drittmitteln", en: "Project management and coordination (“MHDBDB goes AI”), third-party funding acquisition"}
+      - {de: "Datenpflege und -evaluation in den Projekten „Users First“ und „ParzivAI“", en: "Data maintenance and evaluation in the projects “Users First” and “ParzivAI”"}
+  - start: 2024-10
+    end: 2025-10
+    title: {de: "Universitätsassistentin (Karenzvertretung), Ältere deutsche Literatur", en: "University Assistant (parental leave cover), Older German Literature"}
+    institution: {de: "Fachbereich Germanistik, Universität Salzburg", en: "Department of German Studies, University of Salzburg"}
+    details:
+      - {de: "Forschung im Rahmen der Digitalen Edition der Wenzelsbibel (Bildannotation, Python-Skripting)", en: "Research within the digital edition of the Wenceslas Bible (image annotation, Python scripting)"}
+      - {de: Organisation der Jahrestagung des Mediävistenverbands, en: Organisation of the annual conference of the Mediävistenverband}
+      - {de: Unterstützung in der Lehre; Mitarbeit im PR-Team des Fachbereichs, en: Teaching support; member of the department's PR team}
+  - start: 2023-11
+    end: 2024-09
+    title: {de: Senior Scientist (Karenzvertretung), en: Senior Scientist (parental leave cover)}
+    institution: {de: "Mittelhochdeutsche Begriffsdatenbank (MHDBDB), Universität Salzburg", en: "Middle High German Conceptual Database (MHDBDB), University of Salzburg"}
+    details:
+      - {de: "TEI-Dokumentation, XPath-Abfragen, XSLT-Skripting", en: "TEI documentation, XPath queries, XSLT scripting"}
+      - {de: Datenbankevaluation und Qualitätssicherung, en: Database evaluation and quality assurance}
+      - {de: Mitwirkung an der Projektantragstellung, en: Contribution to grant proposals}
+  - start: 2022-09
+    end: 2023-11
+    title: {de: Wissenschaftliche Mitarbeiterin, en: Research Associate}
+    institution: {de: "Projekt „Die Wenzelsbibel – Digitale Edition und Analyse“, Universität Salzburg, in Kooperation mit der Österreichischen Nationalbibliothek", en: "Project “Die Wenzelsbibel – Digitale Edition und Analyse”, University of Salzburg, in cooperation with the Austrian National Library"}
+    details:
+      - {de: Entwicklung von Workflows zur Bildannotation mittelalterlicher Handschriften, en: Development of image annotation workflows for medieval manuscripts}
+      - {de: Ikonographische und semantische Analyse von Text-Bild-Relationen, en: Iconographic and semantic analysis of text–image relations}
+      - {de: Entwicklung kontrollierter Vokabulare, en: Development of controlled vocabularies}
+      - {de: Evaluation computergestützter Bildanalysen (u. a. Objekterkennung), en: Evaluation of computer-assisted image analysis (e.g. object detection)}
+  - start: 2019-10
+    end: 2021-01
+    title: {de: Studienassistentin, en: Student Assistant}
+    institution: {de: "Fachbereich Kunstgeschichte, Universität Salzburg", en: "Department of Art History, University of Salzburg"}
+    details:
+      - {de: Redaktionelle Arbeiten und Betreuung der Bilddatenbank Prometheus, en: Editorial work and maintenance of the Prometheus image database}
+      - {de: Unterstützung bei der Tagungsorganisation und in der Lehre, en: Support in conference organisation and teaching}
+
+publications:
+  journal:
+    - year: 2026
+      title: "Transferring AI-Based Iconclass Classification Across Image Traditions: A RAG Pipeline for the Wenzelsbibel"
+      venue: {de: "In: Histories 6 (2026), H. 1, Art. 17", en: "In: Histories 6 (2026), no. 1, art. 17"}
+      coauthors: [Drew B. Thomas]
+      doi: 10.3390/histories6010017
+  proceedings:
+    - year: 2026
+      title: "Lessons Learned eines der ältesten DH-Projekte der Welt"
+      venue: {de: "In: Book of Abstracts – DHd 2026 „Nicht nur Text, nicht nur Daten“, Universität Wien, 23.–27. Februar 2026", en: "In: Book of Abstracts – DHd 2026 “Nicht nur Text, nicht nur Daten”, University of Vienna, 23–27 February 2026"}
+      coauthors: [Katharina Zeppezauer-Wachauer, Alan Lena van Beek, Christian Steiner]
+      doi: 10.5281/zenodo.18591948
+      aliases: ["10.5281/zenodo.18696516"]
+    - year: 2025
+      title: "Face Detection in Historic Manuscripts. A Case Study on the Wenceslas Bible"
+      venue: {de: "In: 4th International Workshop on Fine Art Pattern Extraction and Recognition (FAPER 2025), ICIAP 2025 Workshop Proceedings", en: "In: 4th International Workshop on Fine Art Pattern Extraction and Recognition (FAPER 2025), ICIAP 2025 Workshop Proceedings"}
+      coauthors: [Heinz Hofbauer, Manfred Kern, Andreas Uhl]
+    - year: 2025
+      title: "Wenceslas or Not. Face Comparison on Frana's Wenceslas Depiction in the Wenceslas Bible"
+      venue: {de: "In: 5th International Workshop on Pattern Recognition for Cultural Heritage (PatReCH 2025), ICIAP 2025 Workshop Proceedings", en: "In: 5th International Workshop on Pattern Recognition for Cultural Heritage (PatReCH 2025), ICIAP 2025 Workshop Proceedings"}
+      coauthors: [Heinz Hofbauer, Manfred Kern, Andreas Uhl]
+  editions:
+    - year: 2026
+      title: "Mittelhochdeutsche Begriffsdatenbank (MHDBDB) – TEI-XML Repository"
+      venue: {de: "Software, 10.06.2026", en: "Software, 10 June 2026"}
+      coauthors: [Katharina Zeppezauer-Wachauer, Klaus M. Schmidt, Alan Lena van Beek, Christian Steiner]
+      doi: 10.5281/zenodo.20627657
+    - year: 2024
+      year_label: {de: seit 2024, en: since 2024}
+      title: "Wenzelsbibel Digital. Die Wenzelsbibel – Digitale Edition und Analyse"
+      venue: {de: "Kooperationsprojekt des Fachbereichs Germanistik der Universität Salzburg und der Österreichischen Nationalbibliothek", en: "Cooperation project of the Department of German Studies, University of Salzburg, and the Austrian National Library"}
+      coauthors: [Manfred Kern, Linda Beutel-Thurow, Oleksii Sapov-Erlinger, Martina Bürgermeister, Viktoria Spadinger]
+      url: https://edition.onb.ac.at/context:wenbibel
+      aliases: ["Wenzelsbibel Digital"]
+  blog:
+    - year: 2026
+      title: "MHDBDB Next: Forschen ohne Datenbankserver"
+      venue: {de: "Digital Humanities an der Universität Salzburg (Hypotheses), 09.07.2026", en: "Digital Humanities an der Universität Salzburg (Hypotheses), 9 July 2026"}
+      coauthors: [Katharina Zeppezauer-Wachauer, Alan van Beek]
+      doi: 10.58079/16jkg
+    - year: 2025
+      title: "Poc, the Black Knight. Wie voreingenommen sind LLMs bei mittelalterlicher Literatur?"
+      venue: {de: "Digital Humanities an der Universität Salzburg (Hypotheses), 06.11.2025", en: "Digital Humanities an der Universität Salzburg (Hypotheses), 6 November 2025"}
+      coauthors: [Alan Lena van Beek]
+      doi: 10.58079/153my
+    - year: 2024
+      title: "Von der Datenpflege zur Schnittstellenentwicklung: Eine Evaluation des Datenkolosses MHDBDB"
+      venue: {de: "Digital Humanities an der Universität Salzburg (Hypotheses)", en: "Digital Humanities an der Universität Salzburg (Hypotheses)"}
+      coauthors: [Michael Göggelmann, Alan Lena van Beek, Katharina Zeppezauer-Wachauer]
+      doi: 10.58079/12p9n
+
+talks:
+  - date: 2026-02
+    title: "Lessons Learned eines der ältesten DH-Projekte der Welt"
+    type: talk
+    venue: {de: "DHd 2026, Universität Wien", en: "DHd 2026, University of Vienna"}
+    coauthors: [Katharina Zeppezauer-Wachauer, Alan Lena van Beek, Christian Steiner]
+  - date: 2026-01
+    title: "From Punch Cards to Prompt Engineering: The MHDBDB and the Future of Semantic Annotation with LLMs"
+    type: talk
+    venue: {de: "ACDH Lecture 12.1, Austrian Centre for Digital Humanities (ÖAW) in Kooperation mit der Universität Wien", en: "ACDH Lecture 12.1, Austrian Centre for Digital Humanities (ÖAW) in cooperation with the University of Vienna"}
+    doi: 10.5281/zenodo.18412225
+  - date: 2025-09
+    title: "Die Wenzelsbibel zwischen Codex und Code"
+    type: talk
+    venue: {de: "Interdisziplinäre Handschriftenforschung im digitalen Zeitalter in Österreich, Österreichische Nationalbibliothek, Wien", en: "Interdisziplinäre Handschriftenforschung im digitalen Zeitalter in Österreich, Austrian National Library, Vienna"}
+  - date: 2025-07
+    title: "From Users to Co-Creators. Learning from and with the Middle High German Conceptual Database"
+    type: talk
+    venue: {de: "International Medieval Congress, Leeds", en: "International Medieval Congress, Leeds"}
+    doi: 10.5281/zenodo.16737492
+    aliases: ["10.5281/zenodo.19335166"]
+  - date: 2025-03
+    title: "Wenzelsbibel Digital: Völlig Losgelöst"
+    type: poster
+    venue: {de: "DHd 2025, Bielefeld", en: "DHd 2025, Bielefeld"}
+    doi: 10.5281/zenodo.14944537
+    aliases: ["10.5281/zenodo.14943160"]
+  - date: 2025-02
+    title: "Gib mir Tiernamen! Das Namenssystem der MHDBDB"
+    type: talk
+    venue: {de: "Tagung des Mediävistenverbands, Salzburg", en: "Conference of the Mediävistenverband, Salzburg"}
+  - date: 2025-02
+    title: "Mit Linked Open Data-Verfahren zur Standardisierung von Benennungen in der Wenzelsbibel und in der Vulgata"
+    type: talk
+    venue: {de: "Tagung des Mediävistenverbands, Salzburg", en: "Conference of the Mediävistenverband, Salzburg"}
+  - date: 2024-09
+    title: "Digital Sustainability: Relaunch of the MHDBDB"
+    type: poster
+    venue: {de: "CLARIAH Summer School: From Archive to Algorithm", en: "CLARIAH Summer School: From Archive to Algorithm"}
+  - date: 2024-04
+    title: "Text and Image Encoding in the Digital Edition Wenceslas Bible Digital"
+    type: lecture
+    venue: {de: "Seminar Digitale Geisteswissenschaften, Universität Salzburg", en: "Seminar Digital Humanities, University of Salzburg"}
+  - date: 2023-10
+    title: "Interoperability of Text and Image in the Digital Edition of the Wenceslas Bible"
+    type: poster
+    venue: {de: "TEI Conference 2023, Universität Paderborn", en: "TEI Conference 2023, Paderborn University"}
+    doi: 10.17613/gw2h-e162
+
+teaching:
+  - date: 2025-09
+    title: "Bias Detection in der historischen Textanalyse: Prompting, Perspektiven und semantische Präzision in der AI-Readiness der MHDBDB"
+    type: workshop_contribution
+    venue: {de: "FORGE (Forschungsdaten in den Geisteswissenschaften), Rostock", en: "FORGE (Research Data in the Humanities), Rostock"}
+    doi: 10.5281/zenodo.17178192
+    aliases: ["10.5281/zenodo.19332294"]
+  - date: 2024-09
+    title: "Introduction to Text Modelling with TEI"
+    type: workshop
+    venue: {de: "CLARIAH Summer School: From Archive to Algorithm", en: "CLARIAH Summer School: From Archive to Algorithm"}
+
+organisation:
+  - date: 2026-09
+    de: "Mitorganisation des Workshops „Connecting Editions“, Österreichische Nationalbibliothek, September 2026"
+    en: "Co-organisation of the workshop “Connecting Editions”, Austrian National Library, September 2026"
+  - date: 2025-10
+    de: "Organisation des CLARIAH-Hackathons „Von historischen Daten zu KI“, Oktober 2025"
+    en: "Organisation of the CLARIAH hackathon “Von historischen Daten zu KI”, October 2025"
+  - date: 2025-02
+    de: "Mitorganisation der 20. Nachwuchstagung des Mediävistenverbands, Salzburg, Februar 2025"
+    en: "Co-organisation of the 20th early-career conference of the Mediävistenverband, Salzburg, February 2025"
+  - de: "Teilnehmerin im DHd-Mentoringprogramm"
+    en: "Participant in the DHd mentoring programme"
+
+skills:
+  - label: {de: Auszeichnungssprachen und Standards, en: Markup languages and standards}
+    items: [TEI-XML, XPath, XSLT, RDF/SPARQL, SKOS, OntoLex-Lemon]
+  - label: {de: Programmierung und Werkzeuge, en: Programming and tools}
+    items: [Python, Git/GitHub, Docker, LaTeX, Overleaf]
+  - label: {de: Infrastruktur und Repositorien, en: Infrastructure and repositories}
+    items: [GAMS/Fedora]
+  - label: {de: KI-gestützte Verfahren, en: AI-assisted methods}
+    items:
+      - {de: LLM-basierte Annotationspipelines, en: LLM-based annotation pipelines}
+      - {de: Prompt-Dokumentation, en: Prompt documentation}
+      - {de: Human-in-the-Loop-Workflows, en: Human-in-the-loop workflows}
+
+languages:
+  - name: {de: Deutsch, en: German}
+    level: {de: Muttersprache, en: native}
+  - name: {de: Englisch, en: English}
+    level: {de: C1, en: C1}
+  - name: {de: Französisch, en: French}
+    level: {de: B1, en: B1}
+  - name: {de: Spanisch, en: Spanish}
+    level: {de: B1, en: B1}
+  - name: {de: Latein, en: Latin}
+    level: {de: "", en: ""}
+  - name: {de: Niederländisch, en: Dutch}
+    level: {de: "", en: ""}

@@ -1,0 +1,271 @@
+{
+  "orcid": "0009-0008-8333-3658",
+  "url": "https://orcid.org/0009-0008-8333-3658",
+  "works": [
+    {
+      "put_code": 217335363,
+      "title": "Mittelhochdeutsche Begriffsdatenbank (MHDBDB) – TEI-XML Repository",
+      "subtitle": "Mittelhochdeutsche Texte mit semantischen Annotationen",
+      "type": "software",
+      "year": "2026",
+      "month": "06",
+      "journal": null,
+      "dois": [
+        "10.5281/zenodo.20627657"
+      ],
+      "url": null,
+      "contributors": [
+        "Katharina Zeppezauer-Wachauer",
+        "Klaus M. Schmidt",
+        "Alan Lena van Beek",
+        "Julia Hintersteiner",
+        "Christian Steiner"
+      ],
+      "source": "University of Salzburg"
+    },
+    {
+      "put_code": 213782262,
+      "title": "Lessons Learned eines der ältesten DH-Projekte der Welt",
+      "subtitle": "Paradigmenwechsel von RDF-Strukturen zu AI-gestützter Erschließung in der MHDBDB",
+      "type": "conference-paper",
+      "year": "2026",
+      "month": "02",
+      "journal": "Book of Abstracts - DHd 2026",
+      "dois": [
+        "10.5281/zenodo.18591948"
+      ],
+      "url": null,
+      "contributors": [
+        "Katharina Zeppezauer-Wachauer",
+        "Alan Lena van Beek",
+        "Julia Hintersteiner",
+        "Christian Steiner"
+      ],
+      "source": "University of Salzburg"
+    },
+    {
+      "put_code": 208180135,
+      "title": "Transferring AI-Based Iconclass Classification Across Image Traditions: A RAG Pipeline for the Wenzelsbibel",
+      "subtitle": null,
+      "type": "journal-article",
+      "year": "2026",
+      "month": "02",
+      "journal": "Histories 2026, 6 (1), 17",
+      "dois": [
+        "10.3390/histories6010017"
+      ],
+      "url": null,
+      "contributors": [
+        "Julia Hintersteiner",
+        "Drew Thomas"
+      ],
+      "source": "University of Salzburg"
+    },
+    {
+      "put_code": 196250846,
+      "title": "„Poc, the Black Knight“ – Wie voreingenommen sind LLMs bei mittelalterlicher Literatur?",
+      "subtitle": null,
+      "type": "conference-paper",
+      "year": "2025",
+      "month": "11",
+      "journal": "Digital Humanities an der Universität Salzburg. ",
+      "dois": [
+        "10.58079/153my"
+      ],
+      "url": null,
+      "contributors": [
+        "Alan  van Beek",
+        "Julia Hintersteiner"
+      ],
+      "source": "University of Salzburg"
+    },
+    {
+      "put_code": 188926094,
+      "title": "Face Detection in Historic Manuscripts, A Case Study on the Wenceslas Bible",
+      "subtitle": null,
+      "type": "conference-paper",
+      "year": "2025",
+      "month": "09",
+      "journal": "4th International Workshop on Fine Art Pattern Extraction and Recognition (FAPER 2025), ICIAP 2025 Workshop Proceedings",
+      "dois": [],
+      "url": null,
+      "contributors": [
+        "Heinz Hofbauer",
+        "Julia Hintersteiner",
+        "Manfred Kern",
+        "Andreas Uhl"
+      ],
+      "source": "University of Salzburg"
+    },
+    {
+      "put_code": 188926093,
+      "title": "Wenceslas or Not - Face comparison on Frana's Wenceslas Depiction in the Wenceslas Bible",
+      "subtitle": null,
+      "type": "conference-paper",
+      "year": "2025",
+      "month": "09",
+      "journal": "5th International Workshop on Pattern Recognition for Cultural Heritage (PatReCH 2025), ICIAP 2025 Workshop Proceedings",
+      "dois": [],
+      "url": null,
+      "contributors": [
+        "Heinz Hofbauer",
+        "Julia Hintersteiner",
+        "Manfred Kern",
+        "Andreas Uhl"
+      ],
+      "source": "University of Salzburg"
+    },
+    {
+      "put_code": 185234250,
+      "title": "User Acceptance Testing in den Digitalen Geisteswissenschaften",
+      "subtitle": null,
+      "type": "other",
+      "year": "2025",
+      "month": "05",
+      "journal": null,
+      "dois": [],
+      "url": null,
+      "contributors": [
+        "Alan Lena van Beek",
+        "Julia Hintersteiner",
+        "Katharina Zeppezauer-Wachauer"
+      ],
+      "source": "University of Salzburg"
+    },
+    {
+      "put_code": 207413697,
+      "title": "Wenzelsbibel Digital",
+      "subtitle": "Völlig losgelöst Die Edition als transmediales Skript",
+      "type": "conference-poster",
+      "year": "2025",
+      "month": "02",
+      "journal": null,
+      "dois": [
+        "10.5281/zenodo.14943160",
+        "10.5281/zenodo.14944537"
+      ],
+      "url": null,
+      "contributors": [
+        "Linda Beutel-Thurow",
+        "Martina Bürgermeister",
+        "Julia Hintersteiner",
+        "Christoph Steindl",
+        "Edith Elfriede Kapeller",
+        "Manfred Kern",
+        "Viktoria Spadinger"
+      ],
+      "source": "University of Salzburg"
+    },
+    {
+      "put_code": 171992932,
+      "title": "Von der Datenpflege zur Schnittstellenentwicklung",
+      "subtitle": "Eine Evaluation des Datenkolosses MHDBDB",
+      "type": "other",
+      "year": "2024",
+      "month": "11",
+      "journal": null,
+      "dois": [],
+      "url": null,
+      "contributors": [
+        "Julia Hintersteiner",
+        "Michael Göggelmann",
+        "Alan Lena van Beek",
+        "Katharina Zeppezauer-Wachauer"
+      ],
+      "source": "University of Salzburg"
+    },
+    {
+      "put_code": 175843006,
+      "title": "Wenzelsbibel Digital",
+      "subtitle": "Digitale Edition und Analyse",
+      "type": "image",
+      "year": "2024",
+      "month": null,
+      "journal": null,
+      "dois": [],
+      "url": null,
+      "contributors": [
+        "Manfred Kern",
+        "Julia Hintersteiner",
+        "Linda Beutel-Thurow",
+        "Oleksii Sapov-Erlinger",
+        "Martina Bürgermeister",
+        "Viktoria Spadinger"
+      ],
+      "source": "University of Salzburg"
+    },
+    {
+      "put_code": 155743508,
+      "title": "Interoperability of Text and Image in the Digital Edition of the Wenceslas Bible",
+      "subtitle": null,
+      "type": "conference-poster",
+      "year": "2023",
+      "month": null,
+      "journal": null,
+      "dois": [
+        "10.17613/gw2h-e162"
+      ],
+      "url": null,
+      "contributors": [
+        "Linda Beutel - Thurow",
+        "Manfred Kern",
+        "Julia Hintersteiner",
+        "Oleksii Sapov-Erlinger"
+      ],
+      "source": "University of Salzburg"
+    }
+  ],
+  "employments": [
+    {
+      "role": null,
+      "department": null,
+      "organization": "University of Salzburg",
+      "city": "Salzburg",
+      "start": "2022-09",
+      "end": ""
+    },
+    {
+      "role": "Software Entwicklerin mit Schwerpunkt Digital Humanities",
+      "department": "Forschung & Datenservices",
+      "organization": "Österreichische Nationalbibliothek",
+      "city": "Vienna",
+      "start": "2026-03",
+      "end": "2028-09"
+    }
+  ],
+  "educations": [
+    {
+      "role": "Master of Arts",
+      "department": "Digitale Geisteswissenschaften",
+      "organization": "Karl-Franzens-Universität Graz",
+      "city": "Graz",
+      "start": "2022-03",
+      "end": "2024-06"
+    },
+    {
+      "role": "Master of Arts",
+      "department": "Germanistik",
+      "organization": "Karl-Franzens-Universität Graz",
+      "city": "Graz",
+      "start": "",
+      "end": "2023-11"
+    },
+    {
+      "role": "Bachelor of Arts",
+      "department": "Kunstgeschichte",
+      "organization": "Paris Lodron University of Salzburg",
+      "city": "Salzburg",
+      "start": "",
+      "end": "2022-02"
+    },
+    {
+      "role": "Bachelor of Arts ",
+      "department": "Germanistik",
+      "organization": "Paris Lodron University of Salzburg",
+      "city": "Salzburg",
+      "start": "",
+      "end": "2021-01"
+    }
+  ],
+  "fetched_at": "2026-09-25T09:20:56+00:00"
+}
