@@ -83,6 +83,20 @@
   {% endfor %}
 </ul>
 
+<h2>{{ ui.projects|t }}</h2>
+<ul class="entries">
+  {% for p in projects %}
+  <li>
+    <span class="when">{{ p|period }}</span>
+    <div>
+      <span class="title">{{ p.name|t }}</span>
+      <span class="venue">{{ p.role_short|t }} · {{ p.institution|t }}{% if p.funding %} · {{ p.funding|t }}{% endif %}</span>
+      <a class="doi" href="{{ p.links[0].url }}">{{ p.links[0].url|replace('https://', '') }}</a>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+
 <h2>{{ ui.education|t }}</h2>
 <ul class="entries">
   {% for e in cv.education %}
@@ -157,6 +171,7 @@
       <span class="title">{{ x.title }}</span>
       <span class="venue"><span class="badge">{{ ui['type_' ~ x.type]|t }}</span>{{ x.venue|t }}</span>
       {% if x.doi %}<a class="doi" href="https://doi.org/{{ x.doi }}">DOI: {{ x.doi }}</a>{% endif %}
+      {% if x.code %}<a class="doi" href="{{ x.code }}">{{ x.code|replace('https://', '') }}</a>{% endif %}
     </div>
   </li>
   {% endfor %}
@@ -164,7 +179,7 @@
 
 <h2>{{ ui.organisation|t }}</h2>
 <ul class="plain">
-  {% for o in cv.organisation %}<li>{{ o|t }}</li>{% endfor %}
+  {% for o in cv.organisation %}<li>{{ o|t }}{% if o.url %} <a class="doi" href="{{ o.url }}">{{ o.url|replace('https://', '') }}</a>{% endif %}</li>{% endfor %}
 </ul>
 
 <div class="two">

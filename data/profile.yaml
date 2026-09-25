@@ -82,21 +82,3 @@ research_interests:
     en: TEI-XML data modelling, data migration and research data infrastructure
   - de: KI-gestützte Verfahren in den Digital Humanities und ihre kritische Reflexion
     en: AI-assisted methods in the Digital Humanities and their critical reflection
-
-projects:
-  - name: Mittelhochdeutsche Begriffsdatenbank (MHDBDB)
-    url: https://mhdbdb.plus.ac.at/
-    de: Eines der ältesten DH-Projekte weltweit; Migration von RDF zu TEI, Relaunch und KI-gestützte Annotation.
-    en: One of the oldest DH projects worldwide; migration from RDF to TEI, platform relaunch and AI-assisted annotation.
-  - name: Wenzelsbibel Digital
-    url: https://edition.onb.ac.at/context:wenbibel
-    de: Digitale Edition und Analyse der Wenzelsbibel (Universität Salzburg & Österreichische Nationalbibliothek).
-    en: Digital edition and analysis of the Wenceslas Bible (University of Salzburg & Austrian National Library).
-  - name: WB-DEA meets MHDBDB
-    url: https://zenodo.org/records/21277766
-    de: CLARIAH-AT-Projekt zur Integration der Wenzelsbibel-Editionsdaten in die MHDBDB mit LLM-gestützter Aufbereitung.
-    en: CLARIAH-AT project integrating the Wenceslas Bible edition data into the MHDBDB with LLM-assisted processing.
-  - name: Peter Handke – Notizbücher. Digitale Edition
-    url: https://edition.onb.ac.at/
-    de: Softwareentwicklung für die digitale Edition der Notizbücher an der Österreichischen Nationalbibliothek.
-    en: Software development for the digital edition of the notebooks at the Austrian National Library.

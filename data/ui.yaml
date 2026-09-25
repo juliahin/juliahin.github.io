@@ -76,3 +76,25 @@ type_image:        {de: Bild, en: Image}
 type_other:        {de: Sonstiges, en: Other}
 type_lesson:       {de: Lehrmaterial, en: Lesson}
 type_blog_post:    {de: Blogbeitrag, en: Blog post}
+
+# Projects page
+nav_projects:      {de: Projekte, en: Projects}
+projects_title:    {de: Projekte, en: Projects}
+projects_intro:
+  de: Forschungsprojekte, an denen ich beteiligt bin oder war, mit Links zu Datenbanken, Editionen, Code und Projektseiten.
+  en: Research projects I am or was involved in, with links to databases, editions, code and project pages.
+period:            {de: Zeitraum, en: Period}
+role:              {de: Rolle, en: Role}
+institution:       {de: Institution, en: Institution}
+funding:           {de: Förderung, en: Funding}
+partners:          {de: Partner, en: Partners}
+contribution:      {de: Meine Aufgaben, en: My contribution}
+subprojects:       {de: Teilprojekte, en: Sub-projects}
+all_projects:      {de: Alle Projekte, en: All projects}
+link_website:      {de: Website, en: Website}
+link_code:         {de: Code, en: Code}
+link_data:         {de: Daten, en: Data}
+link_doi:          {de: Publikation, en: Publication}
+link_project:      {de: Projektseite, en: Project page}
+link_blog:         {de: Blog, en: Blog}
+link_talk:         {de: Vortrag, en: Talk}

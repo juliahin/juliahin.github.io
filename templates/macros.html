@@ -13,9 +13,15 @@
 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5.5A1.5 1.5 0 0 1 3.5 4h17A1.5 1.5 0 0 1 22 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-17A1.5 1.5 0 0 1 2 18.5v-13zm2 .9v.3l8 5.2 8-5.2v-.3H4zm16 2.7-8 5.2-8-5.2V18h16V9.1z"/></svg>
 {%- elif name == 'pdf' -%}
 <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm7 1.5V9h5.5L13 3.5zM7.5 12v6H9v-2h1a2 2 0 0 0 0-4H7.5zm1.5 1.3h1a.7.7 0 0 1 0 1.4H9v-1.4zm3.2-1.3v6h1.8a3 3 0 0 0 0-6h-1.8zm1.4 1.3h.4a1.7 1.7 0 0 1 0 3.4h-.4v-3.4zM17 12v6h1.4v-2.3h1.6v-1.3h-1.6v-1.1h1.9V12H17z"/></svg>
+{%- elif name == 'data' -%}
+<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C7 2 3 3.6 3 5.5v13C3 20.4 7 22 12 22s9-1.6 9-3.5v-13C21 3.6 17 2 12 2zm0 2c4.4 0 7 1.3 7 1.5S16.4 7 12 7 5 5.7 5 5.5 7.6 4 12 4zm7 14.5c0 .2-2.6 1.5-7 1.5s-7-1.3-7-1.5v-3.2C6.6 18 9.2 18.5 12 18.5s5.4-.5 7-1.2v1.2zm0-4.4c0 .2-2.6 1.5-7 1.5s-7-1.3-7-1.5v-3.2c1.6.7 4.2 1.2 7 1.2s5.4-.5 7-1.2v3.2zm0-4.4c0 .2-2.6 1.5-7 1.5S5 9.9 5 9.7V7.6C6.6 8.4 9.2 9 12 9s5.4-.6 7-1.4v2.1z"/></svg>
 {%- elif name == 'external' -%}
 <svg class="icon icon-sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/></svg>
 {%- endif -%}
+{%- endmacro %}
+
+{% macro link_chip(l) -%}
+<li><a class="chip chip-{{ l.kind }}" href="{{ l.url }}">{% if l.kind == 'code' %}{{ icon('github') }}{% elif l.kind in ('data', 'doi') %}{{ icon('data') }}{% else %}{{ icon('external') }}{% endif %}<span class="chip-kind">{{ ui['link_' ~ l.kind]|t }}</span>{{ l.label|t }}</a></li>
 {%- endmacro %}
 
 {% macro badge(key) -%}
@@ -50,6 +56,7 @@
     <span class="entry-venue">{{ badge(x.type) }} {{ x.venue|t }}</span>
     {{ coauthors(x.coauthors) }}
     {% if x.doi %}{{ doi(x.doi) }}{% endif %}
+    {% if x.code %}<a class="doi" href="{{ x.code }}">{{ icon('github') }} {{ x.code|replace('https://github.com/', '') }}</a>{% endif %}
   </div>
 </li>
 {% endmacro %}

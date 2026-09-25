@@ -9,6 +9,7 @@
 
 <nav class="toc" aria-label="{{ 'Abschnitte' if lang == 'de' else 'Sections' }}">
   <a href="#positions">{{ ui.positions|t }}</a>
+  <a href="#projects">{{ ui.projects|t }}</a>
   <a href="#education">{{ ui.education|t }}</a>
   <a href="#publications">{{ ui.publications|t }}</a>
   <a href="#talks">{{ ui.talks|t }}</a>
@@ -29,6 +30,21 @@
   <h2>{{ ui.positions|t }}</h2>
   <ul class="entries timeline">
     {% for p in cv.positions %}{{ m.position(p) }}{% endfor %}
+  </ul>
+</section>
+
+<section class="section" id="projects">
+  <h2>{{ ui.projects|t }}</h2>
+  <ul class="entries">
+    {% for p in projects %}
+    <li class="entry">
+      <span class="entry-when">{{ p|period }}</span>
+      <div class="entry-body">
+        <span class="entry-title"><a href="{{ base }}{{ lang }}/projects/#{{ p.id }}">{{ p.name|t }}</a></span>
+        <span class="entry-venue">{{ p.role_short|t }} · {{ p.institution|t }}{% if p.funding %} · {{ p.funding|t }}{% endif %}</span>
+      </div>
+    </li>
+    {% endfor %}
   </ul>
 </section>
 
@@ -75,7 +91,7 @@
 <section class="section" id="organisation">
   <h2>{{ ui.organisation|t }}</h2>
   <ul class="plain">
-    {% for o in cv.organisation %}<li>{{ o|t }}</li>{% endfor %}
+    {% for o in cv.organisation %}<li>{{ o|t }}{% if o.url %} <a class="doi" href="{{ o.url }}">{{ ui.read_more|t }} {{ m.icon('external') }}</a>{% endif %}</li>{% endfor %}
   </ul>
 </section>
 

@@ -218,6 +218,7 @@ def build(out: Path, base: str, theme: str, pdf_mode: str) -> None:
     profile = load_yaml(DATA / "profile.yaml")
     cv = load_yaml(DATA / "cv.yaml")
     ui = load_yaml(DATA / "ui.yaml")
+    projects = load_yaml(DATA / "projects.yaml")
     orcid = load_json(DATA / "auto" / "orcid.json")
     zenodo = load_json(DATA / "auto" / "zenodo.json")
     bluesky = load_json(DATA / "auto" / "bluesky.json")
@@ -269,6 +270,7 @@ def build(out: Path, base: str, theme: str, pdf_mode: str) -> None:
 
     pages = [
         ("index.html", "", "nav_home"),
+        ("projects.html", "projects/", "nav_projects"),
         ("cv.html", "cv/", "nav_cv"),
         ("publications.html", "publications/", "nav_publications"),
     ]
@@ -279,6 +281,7 @@ def build(out: Path, base: str, theme: str, pdf_mode: str) -> None:
         "profile": profile,
         "cv": cv,
         "ui": ui,
+        "projects": projects,
         "orcid": orcid,
         "zenodo": zenodo,
         "bluesky": bluesky,

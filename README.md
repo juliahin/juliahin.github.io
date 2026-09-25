@@ -12,10 +12,11 @@ data/profile.yaml      identity, links, bio, research interests, projects   (edi
 data/cv.yaml           the curated CV: positions, education, publications,
                        talks, teaching, skills, languages                    (edit by hand)
 data/ui.yaml           interface strings, DE/EN                              (edit by hand)
+data/projects.yaml     research projects with roles, funding, partners and links (edit by hand)
 data/auto/*.json       fetched automatically – do not edit
 scripts/fetch.py       pulls ORCID, Zenodo, Bluesky and the Hypotheses blog feed
 build.py               renders templates/ + data/ + static/  ->  _site/
-templates/             Jinja2 templates (base, index, cv, publications, cv_print)
+templates/             Jinja2 templates (base, index, projects, cv, publications, cv_print)
 static/css             base.css + one theme file (theme-codex.css is live)
 static/fonts           self-hosted Source Serif 4 / Source Sans 3 (SIL OFL 1.1)
 .github/workflows      build-deploy.yml: fetch -> commit data -> build -> PDF -> deploy

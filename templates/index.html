@@ -32,13 +32,16 @@
 <section class="section" id="projects">
   <h2>{{ ui.projects|t }}</h2>
   <ul class="cards">
-    {% for p in profile.projects %}
+    {% for p in projects %}
     <li class="card">
-      <h3><a href="{{ p.url }}">{{ p.name }}</a></h3>
-      <p>{{ p|t }}</p>
+      <h3><a href="{{ base }}{{ lang }}/projects/#{{ p.id }}">{{ p.name|t }}</a></h3>
+      <p class="card-meta">{{ p|period }} · {{ p.role_short|t }}</p>
+      <p>{{ p.teaser|t }}</p>
+      <p class="card-links">{% for l in p.links[:2] %}<a href="{{ l.url }}">{{ l.label|t }} {{ m.icon('external') }}</a>{% endfor %}</p>
     </li>
     {% endfor %}
   </ul>
+  <p class="more"><a href="{{ base }}{{ lang }}/projects/">{{ ui.all_projects|t }} →</a></p>
 </section>
 
 <section class="section" id="latest">

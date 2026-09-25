@@ -205,6 +205,7 @@ teaching:
     type: workshop_contribution
     venue: {de: "FORGE (Forschungsdaten in den Geisteswissenschaften), Rostock", en: "FORGE (Research Data in the Humanities), Rostock"}
     doi: 10.5281/zenodo.17178192
+    code: https://github.com/Middle-High-German-Conceptual-Database/Bias-Detection-Workshop
     aliases: ["10.5281/zenodo.19332294"]
   - date: 2024-09
     title: "Introduction to Text Modelling with TEI"
@@ -218,6 +219,7 @@ organisation:
   - date: 2025-10
     de: "Organisation des CLARIAH-Hackathons „Von historischen Daten zu KI“, Oktober 2025"
     en: "Organisation of the CLARIAH hackathon “Von historischen Daten zu KI”, October 2025"
+    url: https://dhsalzburg.hypotheses.org/6295
   - date: 2025-02
     de: "Mitorganisation der 20. Nachwuchstagung des Mediävistenverbands, Salzburg, Februar 2025"
     en: "Co-organisation of the 20th early-career conference of the Mediävistenverband, Salzburg, February 2025"

@@ -52,6 +52,7 @@
     <a class="brand" href="{{ base }}{{ lang }}/">{{ profile.name }}</a>
     <ul class="nav-links">
       <li><a href="{{ base }}{{ lang }}/" {% if nav_key == 'nav_home' %}aria-current="page"{% endif %}>{{ ui.nav_home|t }}</a></li>
+      <li><a href="{{ base }}{{ lang }}/projects/" {% if nav_key == 'nav_projects' %}aria-current="page"{% endif %}>{{ ui.nav_projects|t }}</a></li>
       <li><a href="{{ base }}{{ lang }}/cv/" {% if nav_key == 'nav_cv' %}aria-current="page"{% endif %}>{{ ui.nav_cv|t }}</a></li>
       <li><a href="{{ base }}{{ lang }}/publications/" {% if nav_key == 'nav_publications' %}aria-current="page"{% endif %}>{{ ui.nav_publications|t }}</a></li>
       <li><a href="{{ base }}{{ lang }}/#contact">{{ ui.nav_contact|t }}</a></li>

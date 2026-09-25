@@ -236,3 +236,20 @@ main { max-width: var(--measure); margin: 0 auto; padding: 1rem 1rem 3rem; }
 main, .identity, .site-footer { overflow-wrap: anywhere; }
 .post, .card, .entry-body, .post-embed-host { min-width: 0; overflow-wrap: anywhere; }
 html { overflow-x: clip; }
+
+/* ---------- projects ---------- */
+.link-chips { list-style: none; margin: .75rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: .4rem; }
+.chip { display: inline-flex; align-items: center; gap: .4em; font-family: var(--ui-font); font-size: .88rem; text-decoration: none; color: var(--fg); background: var(--bg-elevated); border: 1px solid var(--rule); border-radius: 999px; padding: .2em .8em .2em .6em; }
+.chip:hover { border-color: var(--accent); color: var(--accent-strong); }
+.chip-kind { color: var(--fg-muted); font-size: .78em; text-transform: uppercase; letter-spacing: .06em; }
+.chip-code { border-color: var(--olive-300); }
+.link-chips.small { margin-top: .4rem; }
+.link-chips.small .chip { font-size: .8rem; }
+.project-meta { margin: 0 0 1rem; font-family: var(--ui-font); font-size: .95rem; display: grid; grid-template-columns: max-content 1fr; gap: .25rem 1rem; }
+.project-meta div { display: contents; }
+.project-meta dt { color: var(--fg-muted); font-weight: 600; }
+.project-meta dd { margin: 0; }
+.project .entry-note { color: var(--fg); }
+.card-meta { font-family: var(--ui-font); font-size: .85rem; color: var(--fg-muted); margin: -.2rem 0 .4rem; }
+.card-links { display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-family: var(--ui-font); font-size: .88rem; margin: .5rem 0 0; }
+@media (max-width: 560px) { .project-meta { grid-template-columns: 1fr; } .project-meta dt { margin-top: .4rem; } }

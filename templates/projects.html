@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as m with context %}
+{% block content %}
+
+<header class="page-header">
+  <h1>{{ ui.projects_title|t }}</h1>
+  <p class="muted">{{ ui.projects_intro|t }}</p>
+</header>
+
+<nav class="toc" aria-label="{{ 'Projekte' if lang == 'de' else 'Projects' }}">
+  {% for p in projects %}<a href="#{{ p.id }}">{{ (p.name|t).split(':')[0].split(' – ')[0] }}</a>{% endfor %}
+</nav>
+
+{% for p in projects %}
+<article class="section project" id="{{ p.id }}">
+  <h2>{{ p.name|t }}</h2>
+  <dl class="project-meta">
+    <div><dt>{{ ui.period|t }}</dt><dd>{{ p|period }}{% if p.period_note %} · {{ p.period_note|t }}{% endif %}</dd></div>
+    <div><dt>{{ ui.role|t }}</dt><dd>{{ p.role|t }}</dd></div>
+    <div><dt>{{ ui.institution|t }}</dt><dd>{{ p.institution|t }}{% if p.lead %} · {{ p.lead|t }}{% endif %}</dd></div>
+    {% if p.funding %}<div><dt>{{ ui.funding|t }}</dt><dd>{{ p.funding|t }}</dd></div>{% endif %}
+    {% if p.partners %}<div><dt>{{ ui.partners|t }}</dt><dd>{{ p.partners|t }}</dd></div>{% endif %}
+  </dl>
+  <p>{{ p.summary|t }}</p>
+  {% if p.contribution %}<p><strong>{{ ui.contribution|t }}:</strong> {{ p.contribution|t }}</p>{% endif %}
+  <ul class="link-chips">
+    {% for l in p.links %}{{ m.link_chip(l) }}{% endfor %}
+  </ul>
+  {% if p.subprojects %}
+  <h3>{{ ui.subprojects|t }}</h3>
+  <ul class="entries">
+    {% for s in p.subprojects %}
+    <li class="entry">
+      <span class="entry-when">{{ s|period }}</span>
+      <div class="entry-body">
+        <span class="entry-title">{{ s.name|t }}</span>
+        {% if s.funding %}<span class="entry-venue">{{ ui.funding|t }}: {{ s.funding|t }}</span>{% endif %}
+        <span class="entry-note">{{ s.summary|t }}</span>
+        <ul class="link-chips small">
+          {% for l in s.links %}{{ m.link_chip(l) }}{% endfor %}
+        </ul>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</article>
+{% endfor %}
+
+{% endblock %}
