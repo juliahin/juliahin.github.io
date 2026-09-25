@@ -42,7 +42,6 @@
     - {kind: code, label: "mhdbdb-tei-only", url: "https://github.com/DigitalHumanitiesCraft/mhdbdb-tei-only"}
     - {kind: code, label: "MHDBDB-next", url: "https://github.com/Middle-High-German-Conceptual-Database/MHDBDB-next"}
     - {kind: code, label: "MHDBDB-graph", url: "https://github.com/Middle-High-German-Conceptual-Database/MHDBDB-graph"}
-    - {kind: code, label: "TEI-Dokumentation", url: "https://github.com/Middle-High-German-Conceptual-Database/TEI-Dokumentation"}
     - {kind: code, label: {de: "GitHub-Organisation", en: "GitHub organisation"}, url: "https://github.com/Middle-High-German-Conceptual-Database"}
     - {kind: data, label: {de: "TEI-XML-Repositorium (Zenodo)", en: "TEI-XML repository (Zenodo)"}, url: "https://doi.org/10.5281/zenodo.20627657"}
     - {kind: project, label: {de: "Universität Salzburg", en: "University of Salzburg"}, url: "https://www.plus.ac.at/mittelhochdeutsche-begriffsdatenbank/"}
@@ -67,7 +66,6 @@
         en: "Preparing the MHDBDB data in open formats (TEI, RDF, JSON, plain text) and an open API for lemma queries as material for ParzivAI, an LLM for translating Middle High German texts (prototype: Florian Nieser and Thomas Renkert, Heidelberg). Responsible: Katharina Zeppezauer-Wachauer, Julia Hintersteiner, Alan Lena van Beek. Includes the hackathon “Von historischen Daten zu KI” (Salzburg, October 2025)."
       links:
         - {kind: project, label: "CLARIAH-AT", url: "https://clariah.at/en/projects/mhdbdb-goes-ai/"}
-        - {kind: code, label: "parivAI-Textdaten", url: "https://github.com/Middle-High-German-Conceptual-Database/parivAI-Textdaten"}
         - {kind: code, label: "plain-txt-Texte", url: "https://github.com/Middle-High-German-Conceptual-Database/plain-txt-Texte"}
         - {kind: blog, label: {de: "Hackathon-Bericht, DH Salzburg", en: "Hackathon report, DH Salzburg"}, url: "https://dhsalzburg.hypotheses.org/6295"}
 
