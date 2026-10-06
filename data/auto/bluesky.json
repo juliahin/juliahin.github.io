@@ -3,9 +3,46 @@
   "did": "did:plc:f2frokxg4j4u6nqwrvfhuniv",
   "display_name": "Julia Hintersteiner",
   "url": "https://bsky.app/profile/juliekovsky.bsky.social",
-  "followers": 30,
-  "posts_count": 8,
+  "followers": 31,
+  "posts_count": 9,
   "posts": [
+    {
+      "uri": "at://did:plc:f2frokxg4j4u6nqwrvfhuniv/app.bsky.feed.post/3mx6rgtmduk2i",
+      "url": "https://bsky.app/profile/juliekovsky.bsky.social/post/3mx6rgtmduk2i",
+      "created_at": "2026-10-06T06:10:06.131Z",
+      "text": "Happy belated releaseday to us! ✨\n\nNeuer Release seit 01.10. der digitalen Notizbuch-Edition von #PeterHandke an der #ÖNB: Ab sofort sind vier weitere Notizbücher (1979–1980, NB 022–NB 025) online - inklusive Volltextsuche und neuer Register: edition.onb.ac.at/context:hnb",
+      "segments": [
+        {
+          "text": "Happy belated releaseday to us! ✨\n\nNeuer Release seit 01.10. der digitalen Notizbuch-Edition von "
+        },
+        {
+          "text": "#PeterHandke",
+          "href": "https://bsky.app/hashtag/PeterHandke"
+        },
+        {
+          "text": " an der "
+        },
+        {
+          "text": "#ÖNB",
+          "href": "https://bsky.app/hashtag/ÖNB"
+        },
+        {
+          "text": ": Ab sofort sind vier weitere Notizbücher (1979–1980, NB 022–NB 025) online - inklusive Volltextsuche und neuer Register: "
+        },
+        {
+          "text": "edition.onb.ac.at/context:hnb",
+          "href": "https://edition.onb.ac.at/context:hnb"
+        }
+      ],
+      "external": {
+        "uri": "https://edition.onb.ac.at/context:hnb",
+        "title": "Peter Handke Notizbücher",
+        "description": "Die Notizbücher des Literaturnobelpreisträgers Peter Handke bilden einen                   größtenteils noch unveröffentlichten Werkkomplex. Der Autor hielt täglich fest,                   was er zu Hause, unterwegs oder auf Reisen erlebte: Wahrnehmungen, Gedanken,                   Träume ebenso wie Zitate aus Lektüren oder Einfälle zu eigenen Werken. Die im März                   1976 begonnenen \"Reportagen\" von \"Bewusstseins-Ereignissen\" aller Art, auch in                   Form von Zeichnungen, geben einen Eindruck von der Schreibwerkstatt des Autors und                   machen die Notizbücher zu einzigartigen Dokumenten und unverzichtbaren Quellen für                   die Handke-Forschung."
+      },
+      "images": [],
+      "likes": 1,
+      "reposts": 0
+    },
     {
       "uri": "at://did:plc:f2frokxg4j4u6nqwrvfhuniv/app.bsky.feed.post/3mwdbwmilyc2x",
       "url": "https://bsky.app/profile/juliekovsky.bsky.social/post/3mwdbwmilyc2x",
@@ -166,22 +203,7 @@
       ],
       "likes": 6,
       "reposts": 1
-    },
-    {
-      "uri": "at://did:plc:f2frokxg4j4u6nqwrvfhuniv/app.bsky.feed.post/3lsgtozrj4c2r",
-      "url": "https://bsky.app/profile/juliekovsky.bsky.social/post/3lsgtozrj4c2r",
-      "created_at": "2025-06-25T14:39:36.190Z",
-      "text": "Gerade auf einer Podiumsdiskussion aufgeschnappt: Die Ratschlüsse des Herrn sind unergründlich - zum Blackbox-Charakter der „göttlichen KI“.",
-      "segments": [
-        {
-          "text": "Gerade auf einer Podiumsdiskussion aufgeschnappt: Die Ratschlüsse des Herrn sind unergründlich - zum Blackbox-Charakter der „göttlichen KI“."
-        }
-      ],
-      "external": null,
-      "images": [],
-      "likes": 0,
-      "reposts": 0
     }
   ],
-  "fetched_at": "2026-09-27T10:36:22+00:00"
+  "fetched_at": "2026-10-06T12:05:26+00:00"
 }
