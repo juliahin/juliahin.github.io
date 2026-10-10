@@ -77,8 +77,8 @@
         "description": "1000 Worte Forschung: Miniprojekt (Digital Humanities/Germanistische Mediävistik) im Rahmen von CLARIAH-AT, Paris Lodron Universität Salzburg, 2025–2026 Wer die im Auftrag des böhmischen Königs Wenzel..."
       },
       "images": [],
-      "likes": 0,
-      "reposts": 1
+      "likes": 1,
+      "reposts": 2
     },
     {
       "uri": "at://did:plc:f2frokxg4j4u6nqwrvfhuniv/app.bsky.feed.post/3mnz3wuedic2h",
@@ -205,5 +205,5 @@
       "reposts": 1
     }
   ],
-  "fetched_at": "2026-10-08T12:05:52+00:00"
+  "fetched_at": "2026-10-10T11:14:02+00:00"
 }
